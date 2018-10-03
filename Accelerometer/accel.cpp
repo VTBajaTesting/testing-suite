@@ -8,12 +8,28 @@ devADR - hex value of the accelerometers address (enter as 1C or 1D)
 Outputs
 -
 */
-Accel::Accel(const char* devAdr)
+Accel::Accel(const char* devAdr, int r = 8)
 {
 strcpy(deviceADDR, " 0x");
 strcat(deviceADDR, devAdr);
+range = r;
+if(range == 4)
+{
+r = 1;
+}
+else if(range == 2)
+{
+r = 0;
+}
+else
+{
+range = 8;
+r = 2;
+}
+
+set(deviceADDR, Mode_Control, r);
+
 set(deviceADDR, PWR_Control, 1);
-set(deviceADDR, Mode_Control, 2);
 
 }
 
@@ -138,13 +154,18 @@ string Accel::getZ()
 return accel_z;
 }
 
+int Accel::getRange()
+{
+return range;
+}
+
 /*stringToGs - nonmember function to convert the strings to signed ints
 Inputs
 str - the signed hex number as a string
 Outputs
 double - the reading of the acceleration in gs
 */
-double stringToGs (string str)
+double stringToGs (string str, Accel a)
 {
   int num = stoi(str, nullptr, 16);
   double reading = (double)(num);
@@ -152,6 +173,6 @@ double stringToGs (string str)
   {
     reading = reading - 4096;
   }
-  reading = reading  /  1024;
+  reading = reading /(2048  / a.getRange()) ;
   return reading;
 }

@@ -17,6 +17,7 @@ class Accel
 string accel_x = "";
 string accel_y = "";
 string accel_z = "";
+int range = 8;
 
 //default 0x1D and 0x1
 char* deviceADDR = new char[5];
@@ -36,7 +37,7 @@ const char* cmdSet = "i2cset -y 2";
 public:
 
 
-Accel(const char*);
+Accel(const char*, int);
 string exec(char*);
 string get(char*, const char*);
 void set(char*, const char*, int);
@@ -44,6 +45,9 @@ void read();
 string getX();
 string getY();
 string getZ();
+int getRange();
 };
 
 #endif
+
+double stringToGs( string, Accel);

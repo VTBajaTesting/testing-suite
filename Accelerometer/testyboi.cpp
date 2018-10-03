@@ -13,16 +13,16 @@ al = "1d";
 ar = "1c";
 
 
-Accel Aleft(al);
-Accel Aright(ar);
+Accel Aleft(al, 8);
+Accel Aright(ar, 8);
 
 
 while (count < 10)
 {
 Aleft.read();
-cout << "LeftXYZ: " << stringToGs(Aleft.getX()) << " " << stringToGs(Aleft.getY()) << " " << stringToGs(Aleft.getZ()) << endl;
+cout << "LeftXYZ: " << stringToGs(Aleft.getX(), Aleft) << " " << stringToGs(Aleft.getY(), Aleft) << " " << stringToGs(Aleft.getZ(), Aleft) << endl;
 Aright.read();
-cout << "RightXYZ: " << stringToGs(Aright.getX()) << " " << stringToGs(Aright.getY()) << " " << stringToGs(Aright.getZ()) << endl;
+cout << "RightXYZ: " << stringToGs(Aright.getX(), Aright) << " " << stringToGs(Aright.getY(), Aright) << " " << stringToGs(Aright.getZ(), Aright) << endl;
 count++;
 }
 
