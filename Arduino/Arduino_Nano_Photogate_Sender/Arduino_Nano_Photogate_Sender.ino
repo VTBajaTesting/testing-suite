@@ -39,12 +39,12 @@ void loop() {
   }
 
   mean = mean / 50; // this is the 2nd half of the averaging
-  //  if (mean > 100) { // this just makes the output look less funky, with no crazy high values
-  //    mean = 100;
-  //  }
-  //  if (mean < 0) { // this also makes the output correct, because why would it be negative...
-  //    mean = 0;
-  //  }
+    if (mean > 100) { // this just makes the output look less funky, with no crazy high values
+      mean = 100;
+    }
+    if (mean < 0) { // this also makes the output correct, because why would it be negative...
+      mean = 0;
+    }
 
   // This section sets a threshhold value and looks for three sequential values that are
   // below the threshhold, and if the third passes then the car is said to be infront.
@@ -55,9 +55,9 @@ void loop() {
       Serial.println("Car!");
       const char text[] = "Car!";
       radio.write(&text, sizeof(text));
-      digitalWrite(ledPin,HIGH);
+      digitalWrite(ledPin, HIGH);
       delay(1500); // this is "debouncing"
-      digitalWrite(ledPin,LOW);
+      digitalWrite(ledPin, LOW);
     }
     else {
       trigger = false;
@@ -66,5 +66,5 @@ void loop() {
   else {
     threshbump = 0;
   }
-  //  Serial.println(mean); //This is to view the values used for the threshold
+  Serial.println(mean); //This is to view the values used for the threshold
 }

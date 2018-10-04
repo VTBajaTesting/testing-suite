@@ -90,10 +90,12 @@ void loop() {
     if (sizeof(text) != 0) {
       elapsedtime = millis() - starttime;
       lcd.print("                ");
-      lcd.setCursor(0,1);
-      lcd.print(elapsedtime/1000); //this is funky, because it displays the int of seconds
+      lcd.setCursor(0, 1);
+      if (elapsedtime > 1000) {
+        lcd.print(elapsedtime / 1000); //this is funky, because it displays the int of seconds
+      }
       lcd.print(".");
-      elapsedtime = elapsedtime - elapsedtime/1000*1000;
+      elapsedtime = elapsedtime - elapsedtime / 1000 * 1000;
       lcd.print(elapsedtime);
       lcd.print(" sec");
       delay(1500);
