@@ -75,6 +75,15 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="..\..\..\Accelerometer\accel.cpp" />
+    <ClCompile Include="..\..\..\LinearPotentiometer\LP.cpp" />
+    <ClCompile Include="..\..\..\SD_Control\SD_Controller.cpp" />
+    <ClCompile Include="MainFile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Accelerometer\accel.h" />
+    <ClInclude Include="..\..\..\LinearPotentiometer\LP.h" />
+    <ClInclude Include="..\..\..\SD_Control\SD_Controller.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
