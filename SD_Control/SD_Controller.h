@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <iostream>
+#include <fstream>
 //#include <string.h>
 
 //#include <string>
@@ -18,14 +20,17 @@ class SD_Controller {
 
 private:
 	string file_Location = "";
+
+	ofstream myFile;
 	
-	string _filename;
-	int    _updateNum;
-	long   _systemUpTime;
-	int    _numOfLinPot;
-	int    _numOfAccel;
-	int    _numOfIMU;
-	int    _otherShit;
+	string my_filename;
+	int    my_updateNum;
+	long   my_systemUpTime;
+	int    my_numOfLinPot;
+	int    my_numOfAccel;
+	int    my_numOfIMU;
+	int    my_otherShit;
+	string extended_Filename;
 	
 
 public:
