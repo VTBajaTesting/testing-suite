@@ -30,18 +30,19 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 long starttime = 0;
 long elapsedtime = 0;
+long livetime = 0;
 bool endcrossed = true;
 
 void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // Print a message to the LCD.
-  lcd.print("Time to 100ft:");
+  lcd.print("Time elapsed:");
 
   Serial.begin(9600);
   radio.begin();
   radio.openReadingPipe(1, address);
-  //radio.setPALevel(RF24_PA_MAX);
+  radio.setPALevel(RF24_PA_MAX);
   radio.startListening();
 }
 
@@ -61,15 +62,15 @@ void loop() {
   if (mean < 20) { // 20 was chosen through experimentation, this is the minimum value
     threshbump++;
     if (threshbump >= 3) {
-      if (endcrossed == true) {
-        starttime = millis();
-        endcrossed == false;
+      //      if (endcrossed == true) {
+      starttime = millis();
+      endcrossed == false;
 
-        for (int j = 0; j < 16; j++) {
-          lcd.setCursor(j, 1);
-          lcd.print("*");
-          delay(50);
-        }
+      for (int j = 0; j < 16; j++) {
+        lcd.setCursor(j, 1);
+        lcd.print("*");
+        delay(50);
+        //        }
       }
       //delay(750); // this is "debouncing"
     }
@@ -83,13 +84,25 @@ void loop() {
   //   set the cursor to column 0, line 1
   //   (note: line 1 is the second row, since counting begins with 0):
   if (radio.available()) {
-    if (endcrossed == false) {
+    char text[32] = "";
+    radio.read(&text, sizeof(text));
+    lcd.setCursor(0, 1);
+    if (sizeof(text) != 0) {
       elapsedtime = millis() - starttime;
-      lcd.setCursor(0, 1);
-      lcd.print("yeet");
+      lcd.print("                ");
+      lcd.setCursor(0,1);
+      lcd.print(elapsedtime/1000); //this is funky, because it displays the int of seconds
+      lcd.print(".");
+      elapsedtime = elapsedtime - elapsedtime/1000*1000;
       lcd.print(elapsedtime);
-      endcrossed = true;
+      lcd.print(" sec");
+      delay(1500);
     }
+    else {
+      livetime = millis() - starttime;
+      lcd.print(livetime);
+    }
+
 
 
   }

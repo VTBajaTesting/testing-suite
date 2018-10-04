@@ -17,12 +17,15 @@ const byte address[6] = "00101";
 int threshbump = 0;
 bool trigger = false;
 
+int ledPin = 2;
+
 void setup() {
   Serial.begin(9600);
   radio.begin();
   radio.openWritingPipe(address);
   radio.setPALevel(RF24_PA_MAX);
   radio.stopListening();
+  pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
@@ -45,14 +48,16 @@ void loop() {
 
   // This section sets a threshhold value and looks for three sequential values that are
   // below the threshhold, and if the third passes then the car is said to be infront.
-  if (mean < 28) { // 28 was chosen through experimentation, this is the minimum value
+  if (mean < 25) { // 28 was chosen through experimentation, this is the minimum value
     threshbump++;
     if (threshbump >= 3) {
       trigger = true;
       Serial.println("Car!");
       const char text[] = "Car!";
       radio.write(&text, sizeof(text));
-      delay(750); // this is "debouncing"
+      digitalWrite(ledPin,HIGH);
+      delay(1500); // this is "debouncing"
+      digitalWrite(ledPin,LOW);
     }
     else {
       trigger = false;
