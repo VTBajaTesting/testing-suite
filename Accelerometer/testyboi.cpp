@@ -20,9 +20,9 @@ Accel Aright(ar, 8);
 while (count < 10)
 {
 Aleft.read();
-cout << "LeftXYZ: " << stringToGs(Aleft.getX(), Aleft) << " " << stringToGs(Aleft.getY(), Aleft) << " " << stringToGs(Aleft.getZ(), Aleft) << endl;
+cout << "LeftXYZ: " << stringToGs(Aleft.getX(), Aleft.getRange()) << " " << stringToGs(Aleft.getY(), Aleft.getRange()) << " " << stringToGs(Aleft.getZ(), Aleft.getRange()) << endl;
 Aright.read();
-cout << "RightXYZ: " << stringToGs(Aright.getX(), Aright) << " " << stringToGs(Aright.getY(), Aright) << " " << stringToGs(Aright.getZ(), Aright) << endl;
+cout << "RightXYZ: " << stringToGs(Aright.getX(), Aright.getRange()) << " " << stringToGs(Aright.getY(), Aright.getRange()) << " " << stringToGs(Aright.getZ(), Aright.getRange()) << endl;
 count++;
 }
 

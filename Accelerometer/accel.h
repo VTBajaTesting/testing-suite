@@ -45,6 +45,7 @@ public:
 
 //methods : see cpp file for more info
 Accel(const char*, int);
+~Accel();
 string exec(char*);
 string get(char*, const char*);
 void set(char*, const char*, int);
@@ -59,4 +60,4 @@ int getRange();
 
 
 //conversion function
-double stringToGs( string, Accel);
+double stringToGs( string, int);

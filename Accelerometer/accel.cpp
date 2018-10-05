@@ -39,6 +39,20 @@ set(deviceADDR, PWR_Control, 1);
 
 }
 
+
+/*
+~Accel - frees all allocated memory
+*/
+
+Accel::~Accel()
+{
+set(deviceADDR, PWR_Control, 0);
+set(deviceADDR, Mode_Control, 0);
+delete [] deviceADDR;
+}
+
+
+
 /*exec - runs the i2c commands that have been compiled as a string
 Inputs
 cmd - character array containing the commend to be executed
@@ -190,7 +204,7 @@ str - the signed hex number as a string
 Outputs
 double - the reading of the acceleration in gs
 */
-double stringToGs (string str, Accel a)
+double stringToGs (string str, int range)
 {
 	// convert the string of hex to an unsigned int
   int num = stoi(str, nullptr, 16);
@@ -202,6 +216,6 @@ double stringToGs (string str, Accel a)
     reading = reading - 4096;
   }
 // this divides by a conversion factor based on the range
-  reading = reading /(2048  / a.getRange()) ;
+  reading = reading /(2048  / range) ;
   return reading;
 }
