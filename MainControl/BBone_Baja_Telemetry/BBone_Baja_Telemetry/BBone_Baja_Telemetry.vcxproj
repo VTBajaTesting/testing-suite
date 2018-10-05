@@ -74,6 +74,11 @@
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\engin\Documents\GitHub\VTBajaSAE\SD_Control;C:\Users\engin\Documents\GitHub\VTBajaSAE\LinearPotentiometer;C:\Users\engin\Documents\GitHub\VTBajaSAE\Accelerometer;$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
+  </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Accelerometer\accel.cpp" />
     <ClCompile Include="..\..\..\LinearPotentiometer\LP.cpp" />
