@@ -78,10 +78,12 @@ SD_Controller::SD_Controller(string _filename, int _updateNum, long _systemUpTim
 bool SD_Controller::open_File()
 {
 	//not valid
+	myFile.open(extended_Filename);
 }
 bool SD_Controller::close_File()
 {
 	//not valid
+	myFile.close();
 }
 bool SD_Controller::write_Data(string _information)
 {
