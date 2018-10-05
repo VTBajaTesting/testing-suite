@@ -43,14 +43,17 @@ SD_Controller::SD_Controller(string _filename, int _updateNum, long _systemUpTim
 		//myFile << tempStorage; 
 		tempStorage = ""; //Force of habit - always reset a reused variable whether it changes or not
 		
+		/// Accelerometer requires X,Y,Z headers
 		if (my_numOfAccel >= 1)
 		{
 			for (int i = 0; i < my_numOfAccel; i++)
-				tempStorage = tempStorage + "Accelerometer" + to_string(1 + i) + ",";
+				tempStorage = (tempStorage + "Accelerometer" + to_string(1 + i) + "_x,Acc_y,Acc_z,");
 			myFile << tempStorage;
 		}
 		tempStorage = "";
 
+		/// IMU Requires multiple columns
+		/// x, y, z, xV, yV, zV
 		if (my_numOfIMU >= 1)
 		{
 			for (int i = 0; i < my_numOfIMU; i++)

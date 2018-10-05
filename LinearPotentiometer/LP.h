@@ -8,12 +8,15 @@
 #include <signal.h>
 #include<sstream>
 //#include "LP.h"
-volatile sig_atomic_t stop;
+//volatile sig_atomic_t stop;
 
 using namespace std;
+
+/*
 void inthand(int signum){
         stop=1;
 }
+*/
 /*
 This is the object that reads from the linear potentiometer(s) for the VT 2019 Baja Car
 
