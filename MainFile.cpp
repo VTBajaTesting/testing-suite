@@ -68,6 +68,7 @@ int main(int argc,char* argv[])
 		std::cout<<"Waiting for first read..."<<std::endl;
 		system("clear");
 	}//waits for first file to be created to start
+	system("rm /home/debian/testing-suite/files/*");	
 	auto beginning=chrono::steady_clock::now();
 	while(1==1){
 		clock_t newFileTime=clock();

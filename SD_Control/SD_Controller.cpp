@@ -105,7 +105,7 @@ bool SD_Controller::write_Data(int time)
 	//a parameter. I guaranteed that the sensors are reasonably synced by
 	//making each sensor have the same number of calls.
 	toWrite<<time<<","<<potent[0]<<","<<potent[1]<<","<<potent[2]<<","<<potent[3]<<","<<imu->getGyroX()<<","<<imu->getGyroY()<<","<<imu->getGyroZ()<<",";
-	toWrite<<imu->getAccelX()<<","<<imu->getAccelY()<<","<<imu->getAccelZ()<<","<<imu->getTemp()<<",";
+	toWrite<<imu->getAccelX()<<","<<imu->getAccelY()<<","<<imu->getAccelZ()<<","<<imu->getTemp()<<"\n";
 	//toWrite<<accelerometerL.getX()<<","<<accelerometerL.getY()<<","<<accelerometerL.getZ()<<",";
 	//toWrite<<accelerometerR.getX()<<","<<accelerometerR.getY()<<","<<accelerometerR.getZ()<<"\n";
 	myFile<<toWrite.rdbuf();
