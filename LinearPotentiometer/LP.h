@@ -7,17 +7,10 @@
 #include<fcntl.h>
 #include <signal.h>
 #include<sstream>
-//#include "LP.h"
-//volatile sig_atomic_t stop;
 
 using namespace std;
-
 /*
-void inthand(int signum){
-        stop=1;
-}
-*/
-/*
+Michael Bock - 10/9/2018
 This is the object that reads from the linear potentiometer(s) for the VT 2019 Baja Car
 
 */
@@ -34,7 +27,7 @@ class LinPot{
 
 	public:
                 LinPot(double slope, double intercept, int value, int adcPort);
-
+		LinPot();
 		//returns linearPotentiometer value
                 int getVal();
 
