@@ -13,14 +13,12 @@
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
-//#include <time.h>
 
 RF24 radio(9, 10); // CE, CSN
 const byte address[6] = "00101";
 
 #define IRSensor A6 // Sharp IR GP2Y0A41SK0F (4-30cm, analog)
 int threshbump = 0;
-bool trigger = false;
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
@@ -31,7 +29,6 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 long starttime = 0;
 long elapsedtime = 0;
 long livetime = 0;
-bool endcrossed = true;
 
 void setup() {
   // set up the LCD's number of columns and rows:
@@ -62,17 +59,18 @@ void loop() {
   if (mean < 20) { // 20 was chosen through experimentation, this is the minimum value
     threshbump++;
     if (threshbump >= 3) {
-      //      if (endcrossed == true) {
       starttime = millis();
       endcrossed == false;
 
-      for (int j = 0; j < 16; j++) {
+      for (int j = 0; j < 16; j++) { //these lines just do a fancy thing across the bottom of the screen when crossed
         lcd.setCursor(j, 1);
         lcd.print("*");
         delay(50);
+        lcd.setCursor(j, 1);
+        lcd.print(" ");
         //        }
       }
-      //delay(750); // this is "debouncing"
+      delay(750); // this is "debouncing"
     }
   }
   else {
@@ -84,18 +82,26 @@ void loop() {
   //   set the cursor to column 0, line 1
   //   (note: line 1 is the second row, since counting begins with 0):
   if (radio.available()) {
+
     char text[32] = "";
     radio.read(&text, sizeof(text));
     lcd.setCursor(0, 1);
-    if (sizeof(text) != 0) {
+    lcd.print("            "); // This clears out the "Lost Signal!" text from the screen
+    lcd.setCursor(0, 1);
+
+    if (sizeof(text) == 1) {
+      lcd.setCursor(15, 0);
+      lcd.print("*");
+    }
+    if (sizeof(text) >= 2) {
       elapsedtime = millis() - starttime;
       lcd.print("                ");
       lcd.setCursor(0, 1);
-      if (elapsedtime > 1000) {
+      if (elapsedtime > 1000) { //this if statement only posts if it the timespan is over a second so that it doesn't get rounded up
         lcd.print(elapsedtime / 1000); //this is funky, because it displays the int of seconds
       }
-      lcd.print(".");
-      elapsedtime = elapsedtime - elapsedtime / 1000 * 1000;
+      lcd.print("."); // this in combination with the other components helps display the seconds and decimal place properly
+      elapsedtime = elapsedtime - elapsedtime / 1000 * 1000; //this just subtracts the rounded to the nearest second value from the rest
       lcd.print(elapsedtime);
       lcd.print(" sec");
       delay(1500);
@@ -104,23 +110,11 @@ void loop() {
       livetime = millis() - starttime;
       lcd.print(livetime);
     }
-
-
-
   }
-  //  if (radio.available()) {
-  //    char text[32] = "";
-  //    radio.read(&text, sizeof(text));
-  //    Serial.println(text);
-  //    lcd.setCursor(0, 1);
-  //    //   print the number of seconds since reset:
-  //    lcd.print(text);
-  //
-  //  }
-  //  if (radio.available()) {
-  //    radio.read(ReceivedMessage, 1);
-  //    //if (ReceivedMessage[0] == 111){
-  //    lcd.setCursor(0, 1);
-  //    lcd.print("got something!");
-  //    //}
+  else {
+    lcd.setCursor(15, 0);
+    lcd.print(" "); //This is an attempt at a more subtle loss of signal display
+    lcd.setCursor(0, 1);
+    lcd.print("Lost signal!"); // This should only trigger if nothing is being received
+  }
 }

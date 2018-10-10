@@ -39,12 +39,16 @@ void loop() {
   }
 
   mean = mean / 50; // this is the 2nd half of the averaging
-    if (mean > 100) { // this just makes the output look less funky, with no crazy high values
-      mean = 100;
-    }
-    if (mean < 0) { // this also makes the output correct, because why would it be negative...
-      mean = 0;
-    }
+  if (mean > 100) { // this just makes the output look less funky, with no crazy high values
+    mean = 100;
+  }
+  if (mean < 0) { // this also makes the output correct, because why would it be negative...
+    mean = 0;
+  }
+
+  // This section should just send one bit to the other size, which will just tell us that it is in range
+  const char text[] = "*";
+  radio.write(&text, sizeof(text));
 
   // This section sets a threshhold value and looks for three sequential values that are
   // below the threshhold, and if the third passes then the car is said to be infront.
