@@ -11,7 +11,7 @@
 // include the library code:
 #include <LiquidCrystal.h>
 #include <SPI.h>
-#include <nRF24L01.h>
+//#include <nRF24L01.h>
 #include <RF24.h>
 
 RF24 radio(9, 10); // CE, CSN

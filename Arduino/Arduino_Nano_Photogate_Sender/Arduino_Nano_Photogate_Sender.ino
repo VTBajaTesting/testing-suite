@@ -8,7 +8,7 @@
 
 // include the library code:
 #include <SPI.h>
-#include <nRF24L01.h>
+//#include <nRF24L01.h>
 #include <RF24.h>
 
 #define IRSensor A6 // Sharp IR GP2Y0A41SK0F (4-30cm, analog)
