@@ -2,6 +2,9 @@
 
 
 
+
+using namespace std;
+
 LinPot::LinPot()
 {
 	m=0;

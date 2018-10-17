@@ -9,6 +9,8 @@
 #include<sstream>
 
 
+using namespace std;
+
 /*
 Michael Bock - 10/9/2018
 This is the object that reads from the linear potentiometer(s) for the VT 2019 Baja Car
