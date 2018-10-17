@@ -39,6 +39,8 @@ set(deviceADDR, PWR_Control, 1);
 
 }
 
+/*Default constructor*/
+Accel::Accel(){}
 
 /*
 ~Accel - frees all allocated memory

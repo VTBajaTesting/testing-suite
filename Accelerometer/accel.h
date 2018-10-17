@@ -45,6 +45,7 @@ public:
 
 //methods : see cpp file for more info
 Accel(const char*, int);
+Accel();
 ~Accel();
 string exec(char*);
 string get(char*, const char*);

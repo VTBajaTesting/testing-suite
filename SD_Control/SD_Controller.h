@@ -1,20 +1,21 @@
 #pragma once
-
+#include "../LinearPotentiometer/LP.h"
+#include "../Accelerometer/accel.h"
 #include <iostream>
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
 //#include <string.h>
 
-//#include <string>
+#include <string>
 //#include <string.h>
 //#include <cstring>
 
-using namespace std;
+
 
 #ifndef SD_Cont // SD_Cont
 #define SD_Cont
-
+using namespace std;
 class SD_Controller {
 	//std::string test = "";
 
@@ -22,7 +23,8 @@ private:
 	string file_Location = "";
 
 	ofstream myFile;
-	
+	Accel accelerometerR;
+	Accel accelerometerL;
 	string my_filename;
 	int    my_updateNum;
 	long   my_systemUpTime;
@@ -31,7 +33,10 @@ private:
 	int    my_numOfIMU;
 	int    my_otherShit;
 	string extended_Filename;
-	
+	LinPot fRPotentiometer;
+	LinPot fLPotentiometer;
+	LinPot bRPotentiometer;
+	LinPot bLPotentiometer;
 
 public:
 	SD_Controller(string _filename, int _updateNum, long _systemUpTime, int _numOfLinPot,
