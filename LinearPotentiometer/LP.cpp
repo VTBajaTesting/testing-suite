@@ -1,8 +1,20 @@
-
 #include "LP.h"
 
 
-using namespace std;
+
+LinPot::LinPot()
+{
+	m=0;
+	b=0;
+	val=-1;
+	adcPort=0;
+}
+LinPot::LinPot(double slope, double intercept, int value, int adcPort){
+        m=slope;
+        b=intercept;
+        val=value;
+        this->adcPort=adcPort;
+}
 
 int LinPot::linearPotent(){
 
@@ -25,13 +37,6 @@ int LinPot::linearPotent(){
 	//close the file
         fclose(file);
 	return atoi(buffer);
-}
-
-LinPot::LinPot(double slope, double intercept, int value, int adcPort){
-	m=slope;
-        b=intercept;
-        val=value;
-	this->adcPort=adcPort;
 }
 
 //returns the current value of the linear potentiometer
