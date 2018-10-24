@@ -38,6 +38,7 @@ set(deviceADDR, Mode_Control, r);
 set(deviceADDR, PWR_Control, 1);
 
 }
+
 /*Default constructor*/
 Accel::Accel(){}
 

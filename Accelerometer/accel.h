@@ -44,7 +44,9 @@ const char* cmdSet = "i2cset -y 2";
 public:
 
 //methods : see cpp file for more info
+
 Accel(const char* devAdr, int r);
+
 Accel();
 ~Accel();
 string exec(char*);

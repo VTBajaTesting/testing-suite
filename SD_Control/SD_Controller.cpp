@@ -92,14 +92,22 @@ bool SD_Controller::close_File()
 bool SD_Controller::write_Data(string _information)
 {
 	stringstream toWrite;
+<<<<<<< HEAD
 	accelerometerR.read();
 	accelerometerL.read();
+=======
+	
+>>>>>>> 127e2c9fc8f395d5e02f1f9c693fc78675c13bc0
 	int potent[4]={fRPotentiometer.getVal(),fLPotentiometer.getVal(),bRPotentiometer.getVal(),bLPotentiometer.getVal()};
 	//store each line in a string stream to be written to the ofstream
 	//I think that this is easier to do than passing in information as 
 	//a parameter. I guaranteed that the sensors are reasonably synced by
 	//making each sensor have the same number of calls.
+<<<<<<< HEAD
 	toWrite<<potent[0]<<","<<potent[1]<<","<<potent[2]<<","<<potent[3]<<",";
+=======
+	toWrite<<1<<potent[0]<<","<<potent[1]<<","<<potent[2]<<","<<potent[3]<<",";
+>>>>>>> 127e2c9fc8f395d5e02f1f9c693fc78675c13bc0
 	toWrite<<accelerometerR.getX()<<","<<accelerometerR.getY()<<","<<accelerometerR.getZ()<<",";
 	toWrite<<accelerometerL.getX()<<","<<accelerometerL.getY()<<","<<accelerometerL.getZ()<<"\n";
 

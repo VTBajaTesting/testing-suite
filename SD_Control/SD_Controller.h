@@ -23,6 +23,7 @@ private:
 	string file_Location = "";
 
 	ofstream myFile;
+
 	Accel accelerometerR=Accel((const char*)"1c",8);
 	Accel accelerometerL=Accel((const char*)"1d",8);
 	string my_filename;
