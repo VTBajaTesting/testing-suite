@@ -10,7 +10,7 @@ devADR - hex value of the accelerometers address (enter as 1C or 1D)
 Outputs
 -
 */
-Accel::Accel(const char* devAdr, int r = 8)
+Accel::Accel(const char* devAdr="1c", int r = 8)
 {
 //sets the device adress string to ' 0x1c' or ' 0x1d'
 strcpy(deviceADDR, " 0x");
@@ -39,6 +39,8 @@ set(deviceADDR, PWR_Control, 1);
 
 }
 
+/*Default constructor*/
+Accel::Accel(){}
 
 /*
 ~Accel - frees all allocated memory

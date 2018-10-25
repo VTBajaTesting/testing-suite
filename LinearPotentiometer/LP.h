@@ -8,14 +8,14 @@
 #include <signal.h>
 #include<sstream>
 
-using namespace std;
+
 /*
 Michael Bock - 10/9/2018
 This is the object that reads from the linear potentiometer(s) for the VT 2019 Baja Car
 
 */
-#ifndef LP
-#define LP
+#ifndef LIN_POT
+#define LIN_POT
 class LinPot{
         private:
                 int val;
