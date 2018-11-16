@@ -1,6 +1,7 @@
 #pragma once
 #include "../LinearPotentiometer/LP.h"
 #include "../Accelerometer/accel.h"
+#include "../IMU/IMU.h"
 #include <iostream>
 #include <stdio.h>
 #include <iostream>
@@ -23,7 +24,6 @@ private:
 	string file_Location = "";
 
 	ofstream myFile;
-
 	Accel accelerometerR=Accel((const char*)"1c",8);
 	Accel accelerometerL=Accel((const char*)"1d",8);
 	string my_filename;
@@ -38,7 +38,7 @@ private:
 	LinPot fLPotentiometer;
 	LinPot bRPotentiometer;
 	LinPot bLPotentiometer;
-
+	IMU* imu=new IMU();
 public:
 	SD_Controller(string _filename, int _updateNum, long _systemUpTime, int _numOfLinPot,
 		int _numOfAccel, int _numOfIMU, int _otherShit);

@@ -20,6 +20,7 @@ SD_Controller::SD_Controller(string _filename, int _updateNum, long _systemUpTim
 	fLPotentiometer=LinPot(0.0,0.0,-1,1);
 	bRPotentiometer=LinPot(0.0,0.0,-1,2);
 	bLPotentiometer=LinPot(0.0,0.0,-1,3);
+	//imu=IMU();
 	extended_Filename = my_filename + to_string(my_updateNum)+".csv"; //this includes the filename and any revision number
 	                                                           //this ensures that we do not overwrite any prior 
 	                                                           //logs or tests
@@ -91,26 +92,20 @@ bool SD_Controller::close_File()
 }
 bool SD_Controller::write_Data(string _information)
 {
+	std::cout<<"a";
 	stringstream toWrite;
-<<<<<<< HEAD
 	accelerometerR.read();
 	accelerometerL.read();
-=======
-	
->>>>>>> 127e2c9fc8f395d5e02f1f9c693fc78675c13bc0
+	imu->read();
 	int potent[4]={fRPotentiometer.getVal(),fLPotentiometer.getVal(),bRPotentiometer.getVal(),bLPotentiometer.getVal()};
 	//store each line in a string stream to be written to the ofstream
 	//I think that this is easier to do than passing in information as 
 	//a parameter. I guaranteed that the sensors are reasonably synced by
 	//making each sensor have the same number of calls.
-<<<<<<< HEAD
 	toWrite<<potent[0]<<","<<potent[1]<<","<<potent[2]<<","<<potent[3]<<",";
-=======
-	toWrite<<1<<potent[0]<<","<<potent[1]<<","<<potent[2]<<","<<potent[3]<<",";
->>>>>>> 127e2c9fc8f395d5e02f1f9c693fc78675c13bc0
 	toWrite<<accelerometerR.getX()<<","<<accelerometerR.getY()<<","<<accelerometerR.getZ()<<",";
-	toWrite<<accelerometerL.getX()<<","<<accelerometerL.getY()<<","<<accelerometerL.getZ()<<"\n";
-
-
+	toWrite<<accelerometerL.getX()<<","<<accelerometerL.getY()<<","<<accelerometerL.getZ();
+	toWrite<<","<<imu->getAccelX()<<","<<imu->getAccelY()<<","<<imu->getAccelZ()<<","<<imu->getGyroX()<<","<<imu->getGyroY()<<","<<imu->getGyroZ()<<"\n";
+	//std::cout<<"imu"<<imu.getAccelX()<<std::endl;
 	myFile<<toWrite.rdbuf();	
 }

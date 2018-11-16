@@ -29,6 +29,7 @@
 #include "SD_Control/SD_Controller.cpp"
 #include "LinearPotentiometer/LP.cpp"
 #include "Accelerometer/accel.cpp"
+#include "IMU/IMU.cpp"
 //using namespace std;
 
 int main()
@@ -39,15 +40,11 @@ int main()
 	//cin >> temp;
 	std::string name="chooch";
 	SD_Controller sd(name, 1, 2048, 1, 1, 1, 1);
-<<<<<<< HEAD
 	for(int i=0;i<10;i++)
 	{
+	//	std::cout<<"Reading";
 		sd.write_Data("");
 	}
-=======
-	
-
->>>>>>> 127e2c9fc8f395d5e02f1f9c693fc78675c13bc0
 	//return;
 	return 0;
 }

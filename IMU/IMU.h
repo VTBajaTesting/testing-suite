@@ -20,12 +20,19 @@ Accelerometer Mode: +2g
 using namespace std;
 class IMU{
 	private:
-
+		string accelX;
+		string accelY;
+		string accelZ;
+		string gyroX;
+		string gyroY;
+		string gyroZ;
+		//string data;
 		//executes i2cget commands to return readings
 		string exec(string cmd);
 	public:
 		IMU();
-		
+		~IMU();	
+		void read();
 		//reads acceleromtere X value
 		string getAccelX();
 		

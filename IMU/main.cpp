@@ -1,10 +1,12 @@
 #include "IMU.h"
 #include "IMU.cpp"
-
+#include "../Accelerometer/accel.h"
+#include "../Accelerometer/accel.cpp"
 int main()
 {
 	IMU* imu=new IMU();
-	//std::cout<<"IMU Created"<<std::endl;
+	Accel* a=new Accel((const char*)"1c",8);
+	std::cout<<"IMU Created"<<std::endl;
 	std::cout<<imu->getAccelX()<<std::endl;
 	std::cout<<imu->getAccelY()<<std::endl;
 	std::cout<<imu->getAccelZ()<<std::endl;
