@@ -51,13 +51,14 @@ string IMU::exec(string cmd) {
 	char buffer[max_buffer];
 	//strcat((char*)cmd.c_str()," 2>&1");
 	stream = popen((char*)cmd.c_str(), "r");
-	std::cout<<cmd.c_str()<<std::endl;
+	if(!stream)
+	{
+		std::cout<<"IMU missing"<<std::endl;
+		return "";
+	}
 	if (stream) {
-		std::cout<<"Stream"<<std::endl;
 		while (!feof(stream)){
-			std::cout<<"Stram2"<<std::endl;
 			if (fgets(buffer, max_buffer, stream) !=NULL){
-				std::cout<<"buffer"<<std::endl;
 				data.append(buffer);
 			}
 		}

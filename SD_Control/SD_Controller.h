@@ -40,7 +40,7 @@ private:
 	LinPot bLPotentiometer;
 	IMU* imu=new IMU();
 public:
-	SD_Controller(string _filename, int _updateNum, long _systemUpTime, int _numOfLinPot,
+	SD_Controller(string _filename, int  _updateNum, long _systemUpTime, int _numOfLinPot,
 		int _numOfAccel, int _numOfIMU, int _otherShit);
 
 	bool open_File();

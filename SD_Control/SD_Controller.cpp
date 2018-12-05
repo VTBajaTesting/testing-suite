@@ -92,11 +92,11 @@ bool SD_Controller::close_File()
 }
 bool SD_Controller::write_Data(string _information)
 {
-	std::cout<<"a";
+	
 	stringstream toWrite;
 	accelerometerR.read();
 	accelerometerL.read();
-	imu->read();
+	//imu->read();
 	int potent[4]={fRPotentiometer.getVal(),fLPotentiometer.getVal(),bRPotentiometer.getVal(),bLPotentiometer.getVal()};
 	//store each line in a string stream to be written to the ofstream
 	//I think that this is easier to do than passing in information as 
