@@ -57,8 +57,6 @@ int main()
 {
 	std::cout << "Hello again World!" << std::endl;
 	int t=0;
-	//string temp = "";
-	//cin >> temp;
 	std::string name="files/chooch";
 	clock_t start=clock();
 	while(1==1){
@@ -70,22 +68,16 @@ int main()
 		//     off position to before pulling power to
 		//     avoid messing up readings.
 		SD_Controller sd=SD_Controller(name,((double)(newFileTime-start))/CLOCKS_PER_SEC*1000000, 2048, 1, 1, 1, 1);
-                //sd.open_File();
 		std::cout<<((double)newFileTime-start)/CLOCKS_PER_SEC<<std::endl;
 		while(monitorSwitch()==0){
 			sd.write_Data("");
-			//std::cout<<"data written"<<std::endl;
 		}
 		
 		std::cout<<"New file"<<std::endl;
 		sd.close_File();
 		usleep(300);
 		while(monitorSwitch()==1){}
-		//sd=SD_Controller(name, t, 2048, 1, 1, 1, 1);
-                //usleep(300);
-		//while(monitorSwitch()==1){}
 	}
-	//return;
 	return 0;
 }
 

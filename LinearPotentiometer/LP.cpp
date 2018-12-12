@@ -18,20 +18,6 @@ LinPot::LinPot(double slope, double intercept, int value, int adcPort){
 }
 
 
-LinPot::LinPot()
-{
-	m=0;
-	b=0;
-	val=-1;
-	adcPort=0;
-}
-LinPot::LinPot(double slope, double intercept, int value, int adcPort){
-        m=slope;
-        b=intercept;
-        val=value;
-        this->adcPort=adcPort;
-}
-
 int LinPot::linearPotent(){
 
 	//get location of ADC Port file
