@@ -18,18 +18,14 @@ This is the object that reads from the linear potentiometer(s) for the VT 2019 B
 #define LIN_POT
 class LinPot{
         private:
-                int val;
-                double m;
-                double b;
-                int adcPort;
-		//reads ADC file for linear potentiometer
-		int linearPotent();
+                short val;
+                short adcPort;
 
 	public:
-                LinPot(double slope, double intercept, int value, int adcPort);
+                LinPot(short value, short adcPort);
 		LinPot();
 		//returns linearPotentiometer value
-                int getVal();
+                short getVal();
 
 };
 #endif

@@ -5,20 +5,16 @@
 
 LinPot::LinPot()
 {
-	m=0;
-	b=0;
 	val=-1;
 	adcPort=0;
 }
-LinPot::LinPot(double slope, double intercept, int value, int adcPort){
-        m=slope;
-        b=intercept;
-        val=value;
+LinPot::LinPot(short value, short adcPort){
+    	val=value;
         this->adcPort=adcPort;
 }
 
-
-int LinPot::linearPotent(){
+//returns the value of the linear potentiometer
+short LinPot::getVal(){
 
 	//get location of ADC Port file
 	stringstream fileName;
@@ -39,12 +35,6 @@ int LinPot::linearPotent(){
 	//close the file
         fclose(file);
 	return atoi(buffer);
-}
-
-//returns the current value of the linear potentiometer
-int LinPot::getVal()
-{
-	return this->linearPotent();
 }
 
 

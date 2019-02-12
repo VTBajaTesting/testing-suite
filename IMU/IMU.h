@@ -32,9 +32,9 @@ class IMU{
 	public:
 		IMU();
 		~IMU();	
-		void read();
+		string* read();
 		//reads acceleromtere X value
-		string getAccelX();
+		/*string getAccelX();
 		
 		//reads accelerometer Y value
 		string getAccelY();
@@ -49,6 +49,6 @@ class IMU{
 		string getGyroY();
 
 		//reads gyro Z value
-		string getGyroZ();
+		string getGyroZ();*/
 };
 #endif

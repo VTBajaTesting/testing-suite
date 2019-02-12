@@ -1,9 +1,9 @@
 #include "IMU.h"
 IMU::IMU(){
-	std::cout<<"A"<<std::endl;
+	//std::cout<<"A"<<std::endl;
 	//data="";
 	exec("i2cset -y 2 0x68 0x6B 0");	
-	std::cout<<"B"<<std::endl;
+	//std::cout<<"B"<<std::endl;
 	accelX="";
 	accelY="";
 	accelZ="";
@@ -21,7 +21,7 @@ delete &gyroX;
 delete &gyroY;
 delete &gyroZ;
 }*/
-void IMU::read()
+string* IMU::read()
 {
 	//string data="";
  	string getAccelH="i2cget -y 2 0x68 0x3B";
@@ -42,7 +42,8 @@ void IMU::read()
 	getGyroH="i2cget -y 2 0x68 0x47";
         getGyroL="i2cget -y 2 0x68 0x48";
         gyroZ=exec(getGyroH).substr(2,2)+exec(getGyroL).substr(2,2);
-
+	static string readings[6]= {accelX,accelY,accelZ,gyroX,gyroY,gyroZ};
+	return readings;
 }
 string IMU::exec(string cmd) {
 	string data="";
@@ -66,10 +67,11 @@ string IMU::exec(string cmd) {
 	}
 	return data;
 }
-
+/*
+UNUSED FOR NOW
 string IMU::getAccelX()
 {
-	std::cout<<accelX<<std::endl;
+	//std::cout<<accelX<<std::endl;
 	return accelX;
 }
 string IMU::getAccelY()
@@ -93,3 +95,4 @@ string IMU::getGyroZ()
 {
 	return gyroZ;
 }
+*/

@@ -27,12 +27,12 @@ private:
 	Accel accelerometerR=Accel((const char*)"1c",8);
 	Accel accelerometerL=Accel((const char*)"1d",8);
 	string my_filename;
-	int    my_updateNum;
+	short    my_updateNum;
 	long   my_systemUpTime;
-	int    my_numOfLinPot;
-	int    my_numOfAccel;
-	int    my_numOfIMU;
-	int    my_otherShit;
+	short    my_numOfLinPot;
+	short    my_numOfAccel;
+	short    my_numOfIMU;
+	short    my_otherShit;
 	string extended_Filename;
 	LinPot fRPotentiometer;
 	LinPot fLPotentiometer;
@@ -40,12 +40,12 @@ private:
 	LinPot bLPotentiometer;
 	IMU* imu=new IMU();
 public:
-	SD_Controller(string _filename, int  _updateNum, long _systemUpTime, int _numOfLinPot,
-		int _numOfAccel, int _numOfIMU, int _otherShit);
+	SD_Controller(string _filename, short  _updateNum, long _systemUpTime, short _numOfLinPot,
+		short _numOfAccel, short _numOfIMU, short _otherShit);
 
 	bool open_File();
 	bool close_File();
-	bool write_Data(string _information);
+	bool write_Data(int time);
 
 
 
