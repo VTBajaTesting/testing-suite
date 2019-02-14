@@ -95,18 +95,18 @@ bool SD_Controller::write_Data(int time)
 {
 	
 	stringstream toWrite;
-	//accelerometerR.read();
-	//accelerometerL.read();
-	//string* imuReadings=imu->read();
+	accelerometerR.read();
+	accelerometerL.read();
+	string* imuReadings=imu->read();
 	short potent[4]={fRPotentiometer.getVal(),fLPotentiometer.getVal(),bRPotentiometer.getVal(),bLPotentiometer.getVal()};
 	//store each line in a string stream to be written to the ofstream
 	//I think that this is easier to do than passing in information as 
 	//a parameter. I guaranteed that the sensors are reasonably synced by
 	//making each sensor have the same number of calls.
-	toWrite<<time<<","<<potent[0]<<","<<potent[1]<<","<<potent[2]<<","<<potent[3]<<","<<"\n";
-	//toWrite<<accelerometerR.getX()<<","<<accelerometerR.getY()<<","<<accelerometerR.getZ()<<",";
-	//toWrite<<accelerometerL.getX()<<","<<accelerometerL.getY()<<","<<accelerometerL.getZ()<<"\n";
-	//toWrite<<","<<imu->getAccelX()<<","<<imu->getAccelY()<<","<<imu->getAccelZ()<<","<<imu->getGyroX()<<","<<imu->getGyroY()<<","<<imu->getGyroZ()<<"\n";
+	toWrite<<time<<","<<potent[0]<<","<<potent[1]<<","<<potent[2]<<","<<potent[3]<<",";
+	toWrite<<accelerometerR.getX()<<","<<accelerometerR.getY()<<","<<accelerometerR.getZ()<<",";
+	toWrite<<accelerometerL.getX()<<","<<accelerometerL.getY()<<","<<accelerometerL.getZ();
+	toWrite<<","<<*(imuReadings)<<","<<*(imuReadings+1)<<","<<*(imuReadings+2)<<","<<*(imuReadings+3)<<","<<*(imuReadings+4)<<","<<*(imuReadings+5)<<"\n";
 	//std::cout<<"imu"<<imu.getAccelX()<<std::endl;
-	myFile<<toWrite.rdbuf();	
+	myFile<<toWrite.rdbuf();
 }
