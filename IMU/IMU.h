@@ -14,11 +14,15 @@ Accelerometer Mode: +2g
 #include <string>
 #include <memory>
 #include <array>
+
+#include "../sensors/I2CSensor.h"
+#include "../Accelerometer/accel.h"
 #ifndef IMEASU
 #define IMEASU
 
 using namespace std;
-class IMU{
+class IMU:public I2CSensor
+{
 	private:
 		string accelX;
 		string accelY;
@@ -26,9 +30,14 @@ class IMU{
 		string gyroX;
 		string gyroY;
 		string gyroZ;
-		//string data;
-		//executes i2cget commands to return readings
-		string exec(string cmd);
+		char* devAddr=" 0x68";
+		Accel accelerometer=Accel((const char*)"59",2);
+		const char* gyroXH=" 0x43";
+		const char* gyroXL=" 0x44";
+		const char* gyroYH=" 0x45";
+		const char* gyroYL=" 0x46";
+		const char* gyroZH=" 0x47";
+		const char* gyroZL=" 0x48";
 	public:
 		IMU();
 		~IMU();	

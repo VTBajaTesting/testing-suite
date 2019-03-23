@@ -14,7 +14,7 @@ LinPot::LinPot(short value, short adcPort){
 }
 
 //returns the value of the linear potentiometer
-short LinPot::getVal(){
+int* LinPot::read(){
 
 	//get location of ADC Port file
 	stringstream fileName;
@@ -23,7 +23,8 @@ short LinPot::getVal(){
         if(!file)
         {
         	perror("Linear Potentiometer ");
-                return -1;
+		static int readings[1]={-1};
+                return readings;
         }
         rewind(file);
 
@@ -34,7 +35,8 @@ short LinPot::getVal(){
 	
 	//close the file
         fclose(file);
-	return atoi(buffer);
+	static int readings[1]={atoi(buffer)};
+	return readings;
 }
 
 

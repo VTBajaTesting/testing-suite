@@ -1,7 +1,8 @@
 #ifndef SENSOR
 #define SENSOR
-class Sensor{//not instantiable
+class Sensor{//don't instantiate
 	public:
-		virtual int* read()=0;
+		Sensor(){};
+		int* read(){};
 };
 #endif

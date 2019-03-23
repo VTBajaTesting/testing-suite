@@ -32,6 +32,8 @@
 #include "LinearPotentiometer/LP.cpp"
 #include "Accelerometer/accel.cpp"
 #include "IMU/IMU.cpp"
+#include "GPS/GPS.h"
+#include "GPS/GPS.cpp"
 //using namespace std;
 int monitorSwitch()
 {
@@ -41,7 +43,7 @@ int monitorSwitch()
         if(!file)
         {
         	perror("File Switch ");
-                return -1;
+	                return -1;
         }
         rewind(file);
 
@@ -59,7 +61,19 @@ int main(int argc,char* argv[])
 	int numSamples=0;
 	double totalTime=0;
 	//std::cout << "Switch:" << monitorSwitch() << std::endl;
-	std::string name="files/TS1atTime";
+	std::string name="files/TS11atTime";
+	
+	std::vector<I2CSensor*> i2csensors;
+	Accel* accelerometerR=new Accel((const char*)"1c",8);
+		
+	i2csensors.push_back(new Accel((const char*)"1c",8));
+	i2csensors.push_back(new Accel((const char*)"1d",8));
+	i2csensors.push_back(new IMU());
+	std::vector<Sensor*> sensors;
+	sensors.push_back(new LinPot(-1,1));
+	sensors.push_back(new LinPot(-1,0));
+	sensors.push_back(new LinPot(-1,3));
+	sensors.push_back(new LinPot(-1,2));
 	//Note: we should really find a better way to make the line below better
 	//the way we should do it is to put this thread to sleep
 	// and wake it when we want to read. This will do for now though
@@ -68,7 +82,8 @@ int main(int argc,char* argv[])
 		system("clear");
 	}//waits for first file to be created to start
 	auto beginning=chrono::steady_clock::now();
-	while(1==1){
+	SD_Controller sd=SD_Controller(name,chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now()-beginning).count(),sensors,i2csensors);
+        for(int i=0;i<10;i++){
 		clock_t newFileTime=clock();
 		//puts new csv files in the directory files/<filename>.csv
 		//File timestamps are in microseconds.
@@ -77,20 +92,20 @@ int main(int argc,char* argv[])
 		//     off position to before pulling power to
 		//     avoid messing up readings.
 		//all timestamps are in milliseconds
-		SD_Controller sd=SD_Controller(name,chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now()-beginning).count(), 2048, 1, 1, 1, 1);
+		//SD_Controller sd=SD_Controller(name,chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now()-beginning).count(), sensors, i2csensors);
 		//std::cout<<((double)newFileTime-start)/CLOCKS_PER_SEC<<std::endl;
 		auto startTest=chrono::steady_clock::now();
-		while(monitorSwitch()==1){
+		//while(monitorSwitch()==1){
 			numSamples++;
 			sd.write_Data(chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now()-beginning).count());
-		}
+		//}
 		auto end=chrono::steady_clock::now();
 		std::cout<<"Read "<<numSamples<<" samples in "<<chrono::duration_cast<chrono::milliseconds>(end - startTest).count()/1000.0<<" seconds"<<std::endl;
 		std::cout<<"Speed: "<<numSamples/(chrono::duration_cast<chrono::milliseconds>(end - startTest).count()/1000.0)<<" Hz"<<std::endl;
 		numSamples=0;
 		totalTime=0;
 		//std::cout<<"New File Starting"<<std::endl;
-		sd.close_File();
+		//sd.close_File();
 		usleep(15000);
 		while(monitorSwitch()==0){}
 	}

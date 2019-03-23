@@ -2,6 +2,7 @@
 #include "../LinearPotentiometer/LP.h"
 #include "../Accelerometer/accel.h"
 #include "../IMU/IMU.h"
+#include "../GPS/GPS.h"
 #include <iostream>
 #include <stdio.h>
 #include <iostream>
@@ -9,9 +10,11 @@
 //#include <string.h>
 
 #include <string>
+#include <vector>
 //#include <string.h>
 //#include <cstring>
-
+#include "../sensors/I2CSensor.h"
+#include "../sensors/Sensor.h"
 
 
 #ifndef SD_Cont // SD_Cont
@@ -22,33 +25,21 @@ class SD_Controller {
 
 private:
 	string file_Location = "";
-
-	ofstream myFile;
-	Accel accelerometerR=Accel((const char*)"1c",8);
-	Accel accelerometerL=Accel((const char*)"1d",8);
 	string my_filename;
-	short    my_updateNum;
-	long   my_systemUpTime;
-	short    my_numOfLinPot;
-	short    my_numOfAccel;
-	short    my_numOfIMU;
-	short    my_otherShit;
 	string extended_Filename;
-	LinPot fRPotentiometer;
-	LinPot fLPotentiometer;
-	LinPot bRPotentiometer;
-	LinPot bLPotentiometer;
-	IMU* imu=new IMU();
+	long system_up_time;
+	ofstream myFile;
+	//Accel accelerometerR=Accel((const char*)"1c",8);
+	//Accel accelerometerL=Accel((const char*)"1d",8);
+	std::vector<Sensor*> sensors;
+	std::vector<I2CSensor*> i2csensors;
+	GPS* gps;
 public:
-	SD_Controller(string _filename, short  _updateNum, long _systemUpTime, short _numOfLinPot,
-		short _numOfAccel, short _numOfIMU, short _otherShit);
+	SD_Controller(string _filename, long _systemUpTime,std::vector<Sensor*> s,std::vector<I2CSensor*>i);
 
 	bool open_File();
 	bool close_File();
 	bool write_Data(int time);
-
-
-
 };
 
 
