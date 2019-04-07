@@ -47,7 +47,7 @@ double* GPS::parse(){
 				int deg=atoi(s.c_str());
 				s.clear();
 				n=i;
-				for(i;i<n+6;i++){
+				for(i;i<n+7;i++){
 					s+=res.at(i);
 				}
 				float min=atof(s.c_str());
@@ -65,7 +65,7 @@ double* GPS::parse(){
                                 int deg=atoi(s.c_str());
                                 s.clear();
                                 n=i;
-                                for(i;i<n+6;i++){
+                                for(i;i<n+7;i++){
                                         s+=res.at(i);
                                 }
                                 float min=atof(s.c_str());

@@ -29,6 +29,7 @@ private:
 	string extended_Filename;
 	long system_up_time;
 	ofstream myFile;
+	ofstream gpsFile;
 	//Accel accelerometerR=Accel((const char*)"1c",8);
 	//Accel accelerometerL=Accel((const char*)"1d",8);
 	std::vector<Sensor*> sensors;
@@ -40,6 +41,7 @@ public:
 	bool open_File();
 	bool close_File();
 	bool write_Data(int time);
+	void write_GPS();
 };
 
 
