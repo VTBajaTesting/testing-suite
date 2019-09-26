@@ -1,0 +1,382 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+100.00      0.01     0.01      354    28.25    28.25  IMU::exec(std::string)
+  0.00      0.01     0.00      765     0.00     0.00  bool __gnu_cxx::__is_null_pointer<char>(char*)
+  0.00      0.01     0.00      765     0.00     0.00  std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag)
+  0.00      0.01     0.00      765     0.00     0.00  std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&)
+  0.00      0.01     0.00      765     0.00     0.00  std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*)
+  0.00      0.01     0.00      348     0.00     0.00  std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&)
+  0.00      0.01     0.00      303     0.00     0.00  std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::count() const
+  0.00      0.01     0.00      259     0.00     0.00  std::operator|(std::_Ios_Openmode, std::_Ios_Openmode)
+  0.00      0.01     0.00      240     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.00      0.01     0.00      234     0.00     0.00  std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned int, char const*, std::__va_list), unsigned int, char const*, ...)
+  0.00      0.01     0.00      234     0.00     0.00  char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&)
+  0.00      0.01     0.00      234     0.00     0.00  char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)
+  0.00      0.01     0.00      234     0.00     0.00  char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type)
+  0.00      0.01     0.00      234     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&)
+  0.00      0.01     0.00      234     0.00     0.00  std::to_string(int)
+  0.00      0.01     0.00      202     0.00     0.00  std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::time_since_epoch() const
+  0.00      0.01     0.00      144     0.00     0.00  Accel::set(char*, char const*, int)
+  0.00      0.01     0.00      144     0.00     0.00  Accel::exec(char*)
+  0.00      0.01     0.00      112     0.00     0.00  LinPot::getVal()
+  0.00      0.01     0.00      101     0.00     0.00  std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::count() const
+  0.00      0.01     0.00      101     0.00     0.00  std::enable_if<std::chrono::__is_duration<std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::value, std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::type std::chrono::duration_cast<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&)
+  0.00      0.01     0.00      101     0.00     0.00  std::chrono::duration<long long, std::ratio<1ll, 1000ll> > std::chrono::__duration_cast_impl<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, std::ratio<1ll, 1000000ll>, long long, true, false>::__cast<long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&)
+  0.00      0.01     0.00      101     0.00     0.00  std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::duration<long long, void>(long long const&)
+  0.00      0.01     0.00      101     0.00     0.00  std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::duration<long long, void>(long long const&)
+  0.00      0.01     0.00      101     0.00     0.00  std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&)
+  0.00      0.01     0.00      101     0.00     0.00  std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<long long, std::ratio<1ll, 1000000000ll>, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&)
+  0.00      0.01     0.00       90     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*)
+  0.00      0.01     0.00       83     0.00     0.00  monitorSwitch()
+  0.00      0.01     0.00       72     0.00     0.00  LinPot::LinPot(short, short)
+  0.00      0.01     0.00       72     0.00     0.00  LinPot::LinPot()
+  0.00      0.01     0.00       72     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  0.00      0.01     0.00       36     0.00     0.00  Accel::Accel(char const*, int)
+  0.00      0.01     0.00       36     0.00     0.00  Accel::~Accel()
+  0.00      0.01     0.00       28     0.00   338.98  SD_Controller::write_Data(int)
+  0.00      0.01     0.00       28     0.00   338.98  IMU::read()
+  0.00      0.01     0.00       18     0.00     0.00  SD_Controller::close_File()
+  0.00      0.01     0.00       18     0.00    28.25  SD_Controller::SD_Controller(std::string, short, long, short, short, short, short)
+  0.00      0.01     0.00       18     0.00     0.00  SD_Controller::~SD_Controller()
+  0.00      0.01     0.00       18     0.00    28.25  IMU::IMU()
+  0.00      0.01     0.00       18     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.00      0.01     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN13SD_ControllerC2ESsslssss
+  0.00      0.01     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 100.00% of 0.01 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.00    0.01                 main [1]
+                0.00    0.01      28/28          SD_Controller::write_Data(int) [3]
+                0.00    0.00      18/18          SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+                0.00    0.00     101/101         std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&) [37]
+                0.00    0.00     101/101         std::enable_if<std::chrono::__is_duration<std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::value, std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::type std::chrono::duration_cast<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [33]
+                0.00    0.00     101/101         std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::count() const [32]
+                0.00    0.00      83/83          monitorSwitch() [40]
+                0.00    0.00      18/18          SD_Controller::close_File() [46]
+                0.00    0.00      18/18          SD_Controller::~SD_Controller() [47]
+-----------------------------------------------
+                0.00    0.00      18/354         IMU::IMU() [6]
+                0.01    0.00     336/354         IMU::read() [4]
+[2]    100.0    0.01    0.00     354         IMU::exec(std::string) [2]
+-----------------------------------------------
+                0.00    0.01      28/28          main [1]
+[3]     94.9    0.00    0.01      28         SD_Controller::write_Data(int) [3]
+                0.00    0.01      28/28          IMU::read() [4]
+                0.00    0.00     112/112         LinPot::getVal() [31]
+                0.00    0.00      28/259         std::operator|(std::_Ios_Openmode, std::_Ios_Openmode) [20]
+-----------------------------------------------
+                0.00    0.01      28/28          SD_Controller::write_Data(int) [3]
+[4]     94.9    0.00    0.01      28         IMU::read() [4]
+                0.01    0.00     336/354         IMU::exec(std::string) [2]
+                0.00    0.00     168/240         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [21]
+-----------------------------------------------
+                0.00    0.00      18/18          main [1]
+[5]      5.1    0.00    0.00      18         SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+                0.00    0.00      18/18          IMU::IMU() [6]
+                0.00    0.00      90/234         std::to_string(int) [27]
+                0.00    0.00      90/90          std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*) [39]
+                0.00    0.00      72/72          LinPot::LinPot() [42]
+                0.00    0.00      72/72          LinPot::LinPot(short, short) [41]
+                0.00    0.00      72/72          std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [43]
+                0.00    0.00      72/240         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [21]
+                0.00    0.00      36/36          Accel::Accel(char const*, int) [44]
+                0.00    0.00      36/259         std::operator|(std::_Ios_Openmode, std::_Ios_Openmode) [20]
+                0.00    0.00      18/18          std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [48]
+-----------------------------------------------
+                0.00    0.00      18/18          SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+[6]      5.1    0.00    0.00      18         IMU::IMU() [6]
+                0.00    0.00      18/354         IMU::exec(std::string) [2]
+-----------------------------------------------
+                0.00    0.00     765/765         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [24]
+[14]     0.0    0.00    0.00     765         bool __gnu_cxx::__is_null_pointer<char>(char*) [14]
+-----------------------------------------------
+                0.00    0.00     765/765         std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [17]
+[15]     0.0    0.00    0.00     765         std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag) [15]
+-----------------------------------------------
+                0.00    0.00     765/765         std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [17]
+[16]     0.0    0.00    0.00     765         std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&) [16]
+-----------------------------------------------
+                0.00    0.00     765/765         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [24]
+[17]     0.0    0.00    0.00     765         std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [17]
+                0.00    0.00     765/765         std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&) [16]
+                0.00    0.00     765/765         std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag) [15]
+-----------------------------------------------
+                0.00    0.00      18/348         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [48]
+                0.00    0.00      90/348         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*) [39]
+                0.00    0.00     240/348         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [21]
+[18]     0.0    0.00    0.00     348         std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&) [18]
+-----------------------------------------------
+                0.00    0.00     101/303         std::chrono::duration<long long, std::ratio<1ll, 1000ll> > std::chrono::__duration_cast_impl<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, std::ratio<1ll, 1000000ll>, long long, true, false>::__cast<long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [34]
+                0.00    0.00     202/303         std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<long long, std::ratio<1ll, 1000000000ll>, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [38]
+[19]     0.0    0.00    0.00     303         std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::count() const [19]
+-----------------------------------------------
+                0.00    0.00      28/259         SD_Controller::write_Data(int) [3]
+                0.00    0.00      36/259         SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+                0.00    0.00      83/259         monitorSwitch() [40]
+                0.00    0.00     112/259         LinPot::getVal() [31]
+[20]     0.0    0.00    0.00     259         std::operator|(std::_Ios_Openmode, std::_Ios_Openmode) [20]
+-----------------------------------------------
+                0.00    0.00      72/240         SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+                0.00    0.00     168/240         IMU::read() [4]
+[21]     0.0    0.00    0.00     240         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [21]
+                0.00    0.00     240/348         std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&) [18]
+-----------------------------------------------
+                0.00    0.00     234/234         std::to_string(int) [27]
+[22]     0.0    0.00    0.00     234         std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned int, char const*, std::__va_list), unsigned int, char const*, ...) [22]
+                0.00    0.00     234/234         std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [26]
+-----------------------------------------------
+                0.00    0.00     234/234         std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [26]
+[23]     0.0    0.00    0.00     234         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&) [23]
+                0.00    0.00     234/234         char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type) [25]
+-----------------------------------------------
+                0.00    0.00     234/234         char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type) [25]
+[24]     0.0    0.00    0.00     234         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [24]
+                0.00    0.00     765/765         bool __gnu_cxx::__is_null_pointer<char>(char*) [14]
+                0.00    0.00     765/765         std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [17]
+-----------------------------------------------
+                0.00    0.00     234/234         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&) [23]
+[25]     0.0    0.00    0.00     234         char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type) [25]
+                0.00    0.00     234/234         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [24]
+-----------------------------------------------
+                0.00    0.00     234/234         std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned int, char const*, std::__va_list), unsigned int, char const*, ...) [22]
+[26]     0.0    0.00    0.00     234         std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [26]
+                0.00    0.00     234/234         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&) [23]
+-----------------------------------------------
+                0.00    0.00      90/234         SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+                0.00    0.00     144/234         Accel::set(char*, char const*, int) [29]
+[27]     0.0    0.00    0.00     234         std::to_string(int) [27]
+                0.00    0.00     234/234         std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned int, char const*, std::__va_list), unsigned int, char const*, ...) [22]
+-----------------------------------------------
+                0.00    0.00     202/202         std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&) [37]
+[28]     0.0    0.00    0.00     202         std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::time_since_epoch() const [28]
+-----------------------------------------------
+                0.00    0.00      72/144         Accel::Accel(char const*, int) [44]
+                0.00    0.00      72/144         Accel::~Accel() [45]
+[29]     0.0    0.00    0.00     144         Accel::set(char*, char const*, int) [29]
+                0.00    0.00     144/234         std::to_string(int) [27]
+                0.00    0.00     144/144         Accel::exec(char*) [30]
+-----------------------------------------------
+                0.00    0.00     144/144         Accel::set(char*, char const*, int) [29]
+[30]     0.0    0.00    0.00     144         Accel::exec(char*) [30]
+-----------------------------------------------
+                0.00    0.00     112/112         SD_Controller::write_Data(int) [3]
+[31]     0.0    0.00    0.00     112         LinPot::getVal() [31]
+                0.00    0.00     112/259         std::operator|(std::_Ios_Openmode, std::_Ios_Openmode) [20]
+-----------------------------------------------
+                0.00    0.00     101/101         main [1]
+[32]     0.0    0.00    0.00     101         std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::count() const [32]
+-----------------------------------------------
+                0.00    0.00     101/101         main [1]
+[33]     0.0    0.00    0.00     101         std::enable_if<std::chrono::__is_duration<std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::value, std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::type std::chrono::duration_cast<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [33]
+                0.00    0.00     101/101         std::chrono::duration<long long, std::ratio<1ll, 1000ll> > std::chrono::__duration_cast_impl<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, std::ratio<1ll, 1000000ll>, long long, true, false>::__cast<long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [34]
+-----------------------------------------------
+                0.00    0.00     101/101         std::enable_if<std::chrono::__is_duration<std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::value, std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::type std::chrono::duration_cast<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [33]
+[34]     0.0    0.00    0.00     101         std::chrono::duration<long long, std::ratio<1ll, 1000ll> > std::chrono::__duration_cast_impl<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, std::ratio<1ll, 1000000ll>, long long, true, false>::__cast<long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [34]
+                0.00    0.00     101/303         std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::count() const [19]
+                0.00    0.00     101/101         std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::duration<long long, void>(long long const&) [36]
+-----------------------------------------------
+                0.00    0.00     101/101         std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<long long, std::ratio<1ll, 1000000000ll>, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [38]
+[35]     0.0    0.00    0.00     101         std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::duration<long long, void>(long long const&) [35]
+-----------------------------------------------
+                0.00    0.00     101/101         std::chrono::duration<long long, std::ratio<1ll, 1000ll> > std::chrono::__duration_cast_impl<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, std::ratio<1ll, 1000000ll>, long long, true, false>::__cast<long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [34]
+[36]     0.0    0.00    0.00     101         std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::duration<long long, void>(long long const&) [36]
+-----------------------------------------------
+                0.00    0.00     101/101         main [1]
+[37]     0.0    0.00    0.00     101         std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&) [37]
+                0.00    0.00     202/202         std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::time_since_epoch() const [28]
+                0.00    0.00     101/101         std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<long long, std::ratio<1ll, 1000000000ll>, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [38]
+-----------------------------------------------
+                0.00    0.00     101/101         std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&) [37]
+[38]     0.0    0.00    0.00     101         std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<long long, std::ratio<1ll, 1000000000ll>, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [38]
+                0.00    0.00     202/303         std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::count() const [19]
+                0.00    0.00     101/101         std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::duration<long long, void>(long long const&) [35]
+-----------------------------------------------
+                0.00    0.00      90/90          SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+[39]     0.0    0.00    0.00      90         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*) [39]
+                0.00    0.00      90/348         std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&) [18]
+-----------------------------------------------
+                0.00    0.00      83/83          main [1]
+[40]     0.0    0.00    0.00      83         monitorSwitch() [40]
+                0.00    0.00      83/259         std::operator|(std::_Ios_Openmode, std::_Ios_Openmode) [20]
+-----------------------------------------------
+                0.00    0.00      72/72          SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+[41]     0.0    0.00    0.00      72         LinPot::LinPot(short, short) [41]
+-----------------------------------------------
+                0.00    0.00      72/72          SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+[42]     0.0    0.00    0.00      72         LinPot::LinPot() [42]
+-----------------------------------------------
+                0.00    0.00      72/72          SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+[43]     0.0    0.00    0.00      72         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [43]
+-----------------------------------------------
+                0.00    0.00      36/36          SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+[44]     0.0    0.00    0.00      36         Accel::Accel(char const*, int) [44]
+                0.00    0.00      72/144         Accel::set(char*, char const*, int) [29]
+-----------------------------------------------
+                0.00    0.00      36/36          SD_Controller::~SD_Controller() [47]
+[45]     0.0    0.00    0.00      36         Accel::~Accel() [45]
+                0.00    0.00      72/144         Accel::set(char*, char const*, int) [29]
+-----------------------------------------------
+                0.00    0.00      18/18          main [1]
+[46]     0.0    0.00    0.00      18         SD_Controller::close_File() [46]
+-----------------------------------------------
+                0.00    0.00      18/18          main [1]
+[47]     0.0    0.00    0.00      18         SD_Controller::~SD_Controller() [47]
+                0.00    0.00      36/36          Accel::~Accel() [45]
+-----------------------------------------------
+                0.00    0.00      18/18          SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [5]
+[48]     0.0    0.00    0.00      18         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [48]
+                0.00    0.00      18/348         std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&) [18]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [71]
+[49]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN13SD_ControllerC2ESsslssss [49]
+                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [50]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN13SD_ControllerC2ESsslssss [49]
+[50]     0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [50]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [49] _GLOBAL__sub_I__ZN13SD_ControllerC2ESsslssss [31] LinPot::getVal() [35] std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::duration<long long, void>(long long const&)
+  [40] monitorSwitch()        [41] LinPot::LinPot(short, short) [36] std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::duration<long long, void>(long long const&)
+  [50] __static_initialization_and_destruction_0(int, int) [42] LinPot::LinPot() [37] std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > > const&)
+  [46] SD_Controller::close_File() [22] std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned int, char const*, std::__va_list), unsigned int, char const*, ...) [38] std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::type std::chrono::operator-<long long, std::ratio<1ll, 1000000000ll>, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&)
+   [3] SD_Controller::write_Data(int) [14] bool __gnu_cxx::__is_null_pointer<char>(char*) [15] std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag)
+   [5] SD_Controller::SD_Controller(std::string, short, long, short, short, short, short) [28] std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > >::time_since_epoch() const [16] std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&)
+  [47] SD_Controller::~SD_Controller() [19] std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> >::count() const [18] std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&)
+   [2] IMU::exec(std::string) [32] std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::count() const [17] std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*)
+   [4] IMU::read()            [23] char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&) [27] std::to_string(int)
+   [6] IMU::IMU()             [24] char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [20] std::operator|(std::_Ios_Openmode, std::_Ios_Openmode)
+  [29] Accel::set(char*, char const*, int) [25] char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type) [39] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*)
+  [30] Accel::exec(char*)     [26] std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [21] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  [44] Accel::Accel(char const*, int) [33] std::enable_if<std::chrono::__is_duration<std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::value, std::chrono::duration<long long, std::ratio<1ll, 1000ll> > >::type std::chrono::duration_cast<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [48] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  [45] Accel::~Accel()        [34] std::chrono::duration<long long, std::ratio<1ll, 1000ll> > std::chrono::__duration_cast_impl<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, std::ratio<1ll, 1000000ll>, long long, true, false>::__cast<long long, std::ratio<1ll, 1000000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000000000ll> > const&) [43] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)

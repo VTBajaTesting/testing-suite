@@ -2,7 +2,6 @@
 #include "../LinearPotentiometer/LP.h"
 #include "../Accelerometer/accel.h"
 #include "../IMU/IMU.h"
-#include "../GPS/GPS.h"
 #include <iostream>
 #include <stdio.h>
 #include <iostream>
@@ -10,11 +9,9 @@
 //#include <string.h>
 
 #include <string>
-#include <vector>
 //#include <string.h>
 //#include <cstring>
-#include "../sensors/I2CSensor.h"
-#include "../sensors/Sensor.h"
+
 
 
 #ifndef SD_Cont // SD_Cont
@@ -25,23 +22,34 @@ class SD_Controller {
 
 private:
 	string file_Location = "";
-	string my_filename;
-	string extended_Filename;
-	long system_up_time;
+
 	ofstream myFile;
-	ofstream gpsFile;
-	//Accel accelerometerR=Accel((const char*)"1c",8);
-	//Accel accelerometerL=Accel((const char*)"1d",8);
-	std::vector<Sensor*> sensors;
-	std::vector<I2CSensor*> i2csensors;
-	GPS* gps;
+	Accel accelerometerR=Accel((const char*)"1c",8);//do this in the constructor unless c++ whines about it
+	Accel accelerometerL=Accel((const char*)"1d",8);
+	string my_filename;
+	short    my_updateNum;
+	long   my_systemUpTime;
+	short    my_numOfLinPot;
+	short    my_numOfAccel;
+	short    my_numOfIMU;//in fact all these variables do pretty much nothing
+	short    my_otherShit;//seriously, its time to remove this variable, it does nothing
+	string extended_Filename;
+	LinPot fRPotentiometer;
+	LinPot fLPotentiometer;
+	LinPot bRPotentiometer;
+	LinPot bLPotentiometer;
+	//This variable should be made in the constructor and set to 0/NULL here
+	IMU* imu=new IMU( 0x68, 2 );
 public:
-	SD_Controller(string _filename, long _systemUpTime,std::vector<Sensor*> s,std::vector<I2CSensor*>i);
+	SD_Controller(string _filename, short  _updateNum, long _systemUpTime, short _numOfLinPot,
+		short _numOfAccel, short _numOfIMU, short _otherShit);
 
 	bool open_File();
 	bool close_File();
 	bool write_Data(int time);
-	void write_GPS();
+
+
+
 };
 
 

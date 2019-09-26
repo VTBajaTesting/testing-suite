@@ -14,50 +14,40 @@ Accelerometer Mode: +2g
 #include <string>
 #include <memory>
 #include <array>
-
-#include "../sensors/I2CSensor.h"
-#include "../Accelerometer/accel.h"
 #ifndef IMEASU
 #define IMEASU
-
+#define bufSize 0x7E
 using namespace std;
-class IMU:public I2CSensor
-{
+class IMU{
 	private:
-		string accelX;
-		string accelY;
-		string accelZ;
-		string gyroX;
-		string gyroY;
-		string gyroZ;
-		char* devAddr=" 0x68";
-		Accel accelerometer=Accel((const char*)"59",2);
-		const char* gyroXH=" 0x43";
-		const char* gyroXL=" 0x44";
-		const char* gyroYH=" 0x45";
-		const char* gyroYL=" 0x46";
-		const char* gyroZH=" 0x47";
-		const char* gyroZL=" 0x48";
+		//Note: this code needs some cleaning
+		int gyroX;
+		int gyroY;
+		int gyroZ;
+                int file;
+		int temp;
+		int accelX;
+		int accelY;
+		int accelZ;
+		char dataBuf[bufSize];
+		int address;
+		int bus;
+		//string data;
+		//executes i2cget commands to return readings
+		string exec(string cmd);
+		void process(int idxLow, int idxHigh, int& val);
 	public:
-		IMU();
+		IMU( const int address, const int bus);
 		~IMU();	
-		string* read();
-		//reads acceleromtere X value
-		/*string getAccelX();
+		void readImu();
+
+		int getGyroX();
+		int getGyroY();
+		int getGyroZ();
+		int getAccelX();
+		int getAccelY();
+		int getAccelZ();
+		int getTemp();
 		
-		//reads accelerometer Y value
-		string getAccelY();
-
-		//reads acceleromter Z value
-		string getAccelZ();
-
-		//reads gyro X value
-		string getGyroX();
-
-		//reads gyro Y value
-		string getGyroY();
-
-		//reads gyro Z value
-		string getGyroZ();*/
 };
 #endif

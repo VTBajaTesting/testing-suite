@@ -60,7 +60,7 @@ void loop() {
     threshbump++;
     if (threshbump >= 3) {
       starttime = millis();
-//      endcrossed == false;    //was causing compile issues, seemed unnecessary
+      endcrossed == false;
 
       for (int j = 0; j < 16; j++) { //these lines just do a fancy thing across the bottom of the screen when crossed
         lcd.setCursor(j, 1);

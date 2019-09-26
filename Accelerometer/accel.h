@@ -7,14 +7,12 @@
 #include <array>
 #include <iostream>
 #include <math.h>
-
-#include "../sensors/I2CSensor.h"
 using namespace std;
 
 #ifndef ACCEL
 #define ACCEL
 // this is the class definition
-class Accel:public I2CSensor
+class Accel
 {
 // these strings hold the readings
 string accel_x = "";
@@ -51,7 +49,10 @@ Accel(const char* devAdr, int r);
 
 Accel();
 ~Accel();
-string* read();
+string exec(char*);
+string get(char*, const char*);
+void set(char*, const char*, int);
+void read();
 string getX();
 string getY();
 string getZ();

@@ -8,7 +8,6 @@
 #include <signal.h>
 #include<sstream>
 
-#include "../sensors/Sensor.h"
 
 /*
 Michael Bock - 10/9/2018
@@ -17,7 +16,7 @@ This is the object that reads from the linear potentiometer(s) for the VT 2019 B
 */
 #ifndef LIN_POT
 #define LIN_POT
-class LinPot:public Sensor{
+class LinPot{
         private:
                 short val;
                 short adcPort;
@@ -26,7 +25,7 @@ class LinPot:public Sensor{
                 LinPot(short value, short adcPort);
 		LinPot();
 		//returns linearPotentiometer value
-                int* read();
+                short getVal();
 
 };
 #endif
