@@ -152,7 +152,7 @@ void loop() {
   {
     //reset stopCollecting flag
     stopCollecting = 0;
-    
+    //set status to collecting
     registerMapBuffer[0x00] = 0x01;
     //store data from analog pins into the strain variables
     strain0 = analogRead(A0);
@@ -170,11 +170,12 @@ void loop() {
   }
   else
   {
-    //set the status register to 0x00 if no data is being read
-    registerMapBuffer[0x00] = 0x00;
+    
     //only want to call storeData() once
     if (stopCollecting == 0)
     {
+      //set the status register to 0x00 if no data is being read
+      registerMapBuffer[0x00] = 0x00;
       storeData();
       stopCollecting = 1;
     }
@@ -217,6 +218,14 @@ void storeData()
    * used for debugging, (as much as I can without the other program) */
   Serial.println("Strain0:");
   Serial.println(strain0);
+  Serial.println(strain1);
+  Serial.println(strain2);
+  Serial.println(strain3);
+  Serial.println(strain4);
+  Serial.println(strain5);
+  Serial.println(strain6);
+  Serial.println(strain7);
+  
   Serial.println("Status:");
   Serial.println(registerMapBuffer[0x00]);
   Serial.println("A0:");
