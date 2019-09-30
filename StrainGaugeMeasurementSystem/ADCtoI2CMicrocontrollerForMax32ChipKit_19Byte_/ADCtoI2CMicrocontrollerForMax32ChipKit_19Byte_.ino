@@ -28,7 +28,7 @@
  * 0x0E --------------- A6 LSB ------------ (READ ONLY) ------- N/A
  * 0x0F --------------- A7 MSB ------------ (READ ONLY) ------- N/A
  * 0x10 --------------- A7 LSB ------------ (READ ONLY) ------- N/A
- * 0x11 --------------- COMMANDS ---------- (WRITE ONLY) ------ Master can write 0x01 to start data collection and any other number to stop data collection
+ * 0x11 --------------- COMMANDS ---------- (READ/WRITE) ------ Master can write 0x01 to start data collection and any other number to stop data collection
  * 0x12 --------------- IDENTIFICATION ---- (READ ONLY) ------- The unique identifier of this slave.
  */
 
@@ -115,7 +115,7 @@ void setup() {
   registerMap[0x12] = IDENTIFICATION;
   
   //set to reading data by default (0x01), set to 0x00 if we want the controller to wait for command before reading
-  zeroCommandsData = 0x01;
+  zeroCommandsData = 0x00;
 }
 
 
