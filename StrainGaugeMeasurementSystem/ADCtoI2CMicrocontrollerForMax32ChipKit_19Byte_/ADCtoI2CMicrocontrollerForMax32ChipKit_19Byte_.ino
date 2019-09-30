@@ -37,11 +37,11 @@
  * in order to change the attributes of the register.
  */
 #define SLAVE_ADDRESS 0x29 //The slave address (0x01 -> 0x7F)
-#define REGISTER_SIZE 19 //The size of the register
+#define REGISTER_SIZE 19 //The size of the register (bytes)
 #define MAXIMUM_BYTES_SENT 2 //The maximum number of bytes sent from the master to the slave
-#define INTERRUPT_PIN 2
+#define INTERRUPT_PIN 2 //The pin of the interrupt on this arduino
 #define IDENTIFICATION 0x0D //the identification number of this device
-#define DEFAULT_RECEIVED_COMMAND_VALUE 0x00
+#define DEFAULT_RECEIVED_COMMAND_VALUE 0x00 //The default command value if a bogus command gets received
 
 /**
  * Create the register, register buffer, and commands arrays. 
@@ -54,7 +54,7 @@ byte receivedCommands[MAXIMUM_BYTES_SENT]; //the commands received from the mast
  * Control variables
  */
 byte arrayIndex = 1; //the array index used to write bytes
-byte zeroCommandsData; //the data represented in the 0x12 register
+byte zeroCommandsData; //the data represented in the 0x11 (COMMANDS) register
 
 /**
  * Measurement variables
@@ -73,7 +73,8 @@ unsigned short strain7 = 0; //for A8
  */
 byte useInterrupt = 1; //A flag determining whether we want to use the interrupt pin or not. (1 for yes, 0 for no)
 byte newData = 0; //A flag relating to whether new data has been acquired
-
+byte zeroCommands = 0; //A flag set to 1 when data exists in 0x11.
+byte stopCollecting = 0; //A flag used to stop data collecting
 /**
  * 
  * The setup() method is called on startup of the arduino microcontroller. 
@@ -87,8 +88,9 @@ void setup() {
     pinMode(INTERRUPT_PIN, OUTPUT);
     digitalWrite(INTERRUPT_PIN, HIGH);
   }
-  //sets reference voltage to that applied to AREF pin
-  analogReference(EXTERNAL);
+  //sets reference voltage to that applied to AREF pin (use tag EXTERNAL to do this)
+  //for testing purposes, use DEFAULT
+  analogReference(DEFAULT);
   
   //set pinmodes
   pinMode(A0, INPUT);
@@ -148,6 +150,9 @@ void loop() {
   //only take data if the master sent 0x01 to 0x11(COMMANDS register)
   if (zeroCommandsData == 0x01)
   {
+    //reset stopCollecting flag
+    stopCollecting = 0;
+    
     registerMapBuffer[0x00] = 0x01;
     //store data from analog pins into the strain variables
     strain0 = analogRead(A0);
@@ -159,6 +164,7 @@ void loop() {
     strain6 = analogRead(A6);
     strain7 = analogRead(A7); 
     //call storeData() in order to update the registerMapBuffer
+    storeData();
     //set the flag that we have new data
     newData = 1;
   }
@@ -166,8 +172,13 @@ void loop() {
   {
     //set the status register to 0x00 if no data is being read
     registerMapBuffer[0x00] = 0x00;
+    //only want to call storeData() once
+    if (stopCollecting == 0)
+    {
+      storeData();
+      stopCollecting = 1;
+    }
   }
-  storeData();
   //notify the master that new data is available
   toggleInterrupt();
 }
@@ -180,7 +191,7 @@ void storeData()
 {
   //make sure arrayIndex is set to default (1)
   arrayIndex = 1;
-
+  
   //Store shorts as bytes in the register
   reverseStoreBytes(strain0);
   reverseStoreBytes(strain1);
@@ -191,9 +202,19 @@ void storeData()
   reverseStoreBytes(strain6);
   reverseStoreBytes(strain7);
 
+  /**
+   * Store the command data
+   */
+  if (zeroCommands)
+  {
+    registerMapBuffer[0x11] = zeroCommandsData;
+    zeroCommands = 0;
+  }
+  
+   
 
   /*
-   * used for debugging, (as much as I can without the other program) 
+   * used for debugging, (as much as I can without the other program) */
   Serial.println("Strain0:");
   Serial.println(strain0);
   Serial.println("Status:");
@@ -205,8 +226,8 @@ void storeData()
   Serial.println(registerMap[0x11]);
   Serial.println("ID");
   Serial.println(registerMap[0x12]);
-  Serial.println();
-  */
+  
+  /**/
   //remember to set the arrayIndex back to the default
   arrayIndex = 1;
 }
@@ -237,7 +258,7 @@ void reverseStoreBytes(unsigned short data)
 /**
  * The requestEvent() method is called when the master requests
  * data from the slave. If new data is available, the registerMap is updated
- * to contain the same data as the buffer. The interrupt is then toggled to let the 
+ * to contain the same data as the registerMapBuffer. The interrupt is then toggled to let the 
  * master know no new data exists and the data is sent with an offset of receivedCommands[0]. 
  */
  void requestEvent()
@@ -274,8 +295,8 @@ void reverseStoreBytes(unsigned short data)
  * The method is responsible for determining what data was sent to the slave
  * and translating that data.
  * 
- * NOTE: When the master sends data to the slave, the first index should be the address
- * the master is referencing and the second index should be the data value the master wishes
+ * NOTE: When the master sends data to the slave, the first byte index should be the address
+ * the master is referencing and the second byte index should be the data value the master wishes
  * to write. If the master simply wants data from a specific address, only the first index should
  * have data. 
  * 
@@ -318,6 +339,7 @@ void receiveEvent(int byteData)
   if (receivedCommands[0] == 0x11)
   {
     zeroCommandsData = receivedCommands[1];//set command data
+    zeroCommands = 1;
   }
   else
   {
