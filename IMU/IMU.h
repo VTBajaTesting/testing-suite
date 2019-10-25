@@ -21,7 +21,7 @@ using namespace std;
 class IMU{
 	private:
 		//Note: this code needs some cleaning
-		int gyroX;
+		int gyroX;//TODO:gotta initialize these, for now we can say they are undefined until they are read in, which actually kinda makes sense
 		int gyroY;
 		int gyroZ;
                 int file;

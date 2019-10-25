@@ -24,29 +24,29 @@ private:
 	string file_Location = "";
 
 	ofstream myFile;
-	Accel accelerometerR=Accel((const char*)"1c",8);//do this in the constructor unless c++ whines about it
-	Accel accelerometerL=Accel((const char*)"1d",8);
+	Accel accelerometerR=Accel(2,0x1c);//do this in the constructor unless c++ whines about it
+	Accel accelerometerL=Accel(2,0x1d);//TODO:these are terrible variable names - should be changed to not be bad
 	string my_filename;
-	short    my_updateNum;
-	long   my_systemUpTime;
-	short    my_numOfLinPot;
-	short    my_numOfAccel;
+	short    my_updateNum;//useless
+	long   my_systemUpTime;//useless
+	short    my_numOfLinPot;//useless
+	short    my_numOfAccel;//useless
 	short    my_numOfIMU;//in fact all these variables do pretty much nothing
 	short    my_otherShit;//seriously, its time to remove this variable, it does nothing
 	string extended_Filename;
-	LinPot fRPotentiometer;
+	LinPot fRPotentiometer;//make syre these match
 	LinPot fLPotentiometer;
 	LinPot bRPotentiometer;
 	LinPot bLPotentiometer;
 	//This variable should be made in the constructor and set to 0/NULL here
-	IMU* imu=new IMU( 0x68, 2 );
+	IMU* imu=new IMU( 0x68, 2 );//do this in the constructor unless c++ whines
 public:
 	SD_Controller(string _filename, short  _updateNum, long _systemUpTime, short _numOfLinPot,
-		short _numOfAccel, short _numOfIMU, short _otherShit);
+		short _numOfAccel, short _numOfIMU, short _otherShit);//most of these arguments are usewell @corwinw
 
 	bool open_File();
 	bool close_File();
-	bool write_Data(int time);
+	bool write_Data(int time);//TODO: write to RAM instead
 
 
 

@@ -1,66 +1,31 @@
-#include <cstdlib>
-#include <cstdio>
-#include <stdexcept>
-#include <cstring>
-#include <string>
-#include <memory>
-#include <array>
-#include <iostream>
-#include <math.h>
-using namespace std;
-
 #ifndef ACCEL
 #define ACCEL
-// this is the class definition
-class Accel
-{
-// these strings hold the readings
-string accel_x = "";
-string accel_y = "";
-string accel_z = "";
-// this holds the range
-int range = 8;
 
-//default 0x1D and 0x1
-//this holds the devices adress
-char* deviceADDR = new char[5];
-//address of the power control register
-const char* PWR_Control = " 0x2A ";
-//address of the xyz range control register
-const char* Mode_Control = " 0x0E ";
-//addresses of the acceleration readings
-const char* accel_xH = " 0x01";
-const char* accel_xL = " 0x02";
+class Accel {
 
-const char* accel_yH = " 0x03";
-const char* accel_yL = " 0x04";
-const char* accel_zH = " 0x05";
-const char* accel_zL = " 0x06";
+private:
+	int I2CBus, I2CAddress;
+	char dataBuffer[0x7f];
 
-//command strings the need registers to work
-const char* cmdGet = "i2cget -y 2";
-const char* cmdSet = "i2cset -y 2";
+	int accelerationX;//TODO:gotta initialize these, for now we can say they are undefined until they are read in, which actually kinda makes sense
+	int accelerationY;
+	int accelerationZ;
 
+	int file;
+	int range;
+
+	int  convertAcceleration(int, int);
+	int  writeByte(char address, char value);
 public:
+	Accel(int bus, int address);
+	void readData();
 
-//methods : see cpp file for more info
-
-Accel(const char* devAdr, int r);
-
-Accel();
-~Accel();
-string exec(char*);
-string get(char*, const char*);
-void set(char*, const char*, int);
-void read();
-string getX();
-string getY();
-string getZ();
-int getRange();
+	void setRange(int range);
+	int getRange();
+	//TODO:put these in accel.cpp
+	int getX() { return accelerationX; }
+	int getY() { return accelerationY; }
+	int getZ() { return accelerationZ; }
 };
 
 #endif
-
-
-//conversion function
-double stringToGs( string, int);

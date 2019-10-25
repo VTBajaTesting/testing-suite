@@ -95,7 +95,7 @@ int IMU::getAccelZ()
 void IMU::process(int idxLow, int idxHigh, int& val){
 	//do some post processing of the gyro data
 	short value = dataBuf[idxHigh];//get the most significant byte of the reading
-	value = (value << 8) | dataBuf[idxLow]; //shift the high bit over 8 to align it with the low bit and or this mf
+	value = (value << 16) | dataBuf[idxLow]; //shift the high bit over 8 to align it with the low bit and or this mf
 	value = value >> 2; //account for 2s completement
 	value = ~value + 1;
         val = value;	

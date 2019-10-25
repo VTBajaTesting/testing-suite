@@ -1,226 +1,132 @@
-//Accelorometer object code 
-//Written by: Matthew Herrity
-//Last Editted: 10/5/2018
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <linux/i2c.h>
+#include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
+#include <stropts.h>
+#include <stdio.h>
 #include "accel.h"
-/********************************************************
- * This sensor is not working correctly; don't base anycode off it
- *
- * ***********************************************************/
+#include <iostream>
+#include <math.h>
 
-/*Constructor- currently only works on -8 g to 8 g mode
-Inputs
-devADR - hex value of the accelerometers address (enter as 1C or 1D)
-Outputs
--
-*/
-Accel::Accel(const char* devAdr="1c", int r = 8)
-{
-//sets the device adress string to ' 0x1c' or ' 0x1d'
-strcpy(deviceADDR, " 0x");
-strcat(deviceADDR, devAdr);
-//sets the range equal to the parameter
-range = r;
-//uses if statements to setup the register equivalent to the inputed range
-if(range == 4)
-{
-r = 1;
-}
-else if(range == 2)
-{
-r = 0;
-}
-else
-{
-range = 8;
-r = 2;
+using namespace std;
+
+#define MAX_BUS 64
+
+#define ACC_X_LSB 	0x01
+#define ACC_X_MSB 	0x02
+#define ACC_Y_LSB 	0x03
+#define ACC_Y_MSB 	0x04
+#define ACC_Z_LSB 	0x05
+#define ACC_Z_MSB 	0x06
+
+#define RANGE	 	0x0E  //bits 1,0 -> RANGE OF READINGS
+#define POWER		0x2A  //bits 1,0  -> POWER
+
+
+Accel::Accel(int bus, int address) {
+    I2CBus = bus;
+    I2CAddress = address;
+    writeByte(POWER, 1);
 }
 
-//writes the scaleing register to have the proper inputed scale
-set(deviceADDR, Mode_Control, r);
-//writes the sleep register to be in awake mode
-set(deviceADDR, PWR_Control, 1);
+void Accel::readData(){
 
+    char namebuf[MAX_BUS];
+    snprintf(namebuf, sizeof(namebuf), "/dev/i2c-%d", I2CBus);
+
+    //Open i2c bus
+    if ((file = open(namebuf, O_RDWR)) < 0){
+        std::cout << "Failed to open accelerometer on " << namebuf << " I2C Bus" << std::endl;
+    }
+
+    //access accelerometer
+    if (ioctl(file, I2C_SLAVE, I2CAddress) < 0){
+        std::cout << "I2C_SLAVE address " << I2CAddress << " failed..." << std::endl;
+    }
+
+    //start transmission
+    char buf[1] = {0x3B};
+    if(write(file, buf, 1)!=1){
+    	std::cout << "Failed to start data transmission with Accelerometer" << endl;
+    }
+
+    //read device state into dataBuffer
+    int numberBytes = 0x7F;
+    int bytesRead = read(file, this->dataBuffer, numberBytes);
+    if (bytesRead <= 0){
+    	std::cout << "Did not read in any accelerometer data" << std::endl;
+    }
+    close(file);
+
+    this->accelerationX = convertAcceleration(ACC_X_LSB, ACC_X_MSB);
+    this->accelerationY = convertAcceleration(ACC_Y_LSB, ACC_Y_MSB);
+    this->accelerationZ = convertAcceleration(ACC_Z_LSB, ACC_Z_MSB);
 }
 
-/*Default constructor*/
-Accel::Accel(){}
-
-/*
-~Accel - frees all allocated memory
-*/
-
-Accel::~Accel()
-{
-set(deviceADDR, PWR_Control, 0);
-set(deviceADDR, Mode_Control, 0);
-delete [] deviceADDR;
+int Accel::convertAcceleration(int lsb_reg_addr, int msb_reg_addr){
+    int16_t temp = dataBuffer[msb_reg_addr];
+    temp = temp>>8;
+    temp += dataBuffer[lsb_reg_addr];
+    temp = temp<<4;
+    if (temp < 2048) {
+    	temp = ~temp + 1;
+    }
+    else {
+	temp -= 2048;
+    }
+    return temp;
 }
 
-
-
-/*exec - runs the i2c commands that have been compiled as a string
-Inputs
-cmd - character array containing the commend to be executed
-Outputs
-string - the unproccessed string returned by the command 'should be in 0x-- form'
-*/
-
-string Accel::exec(char* cmd){
-//some processing variables
-string data = "";
-FILE * stream;
-const int max_buffer = 256;
-char buffer[max_buffer];
-// adds the final piece of the command for the read/write commands
-strcat(cmd, " 2>&1");
-//opens the results of the command after the command is run in linux 
-stream = popen(cmd, "r");
-//if the stream properly opened and the end of the file hasn't been reached add the next character to a beffer string
-if(stream){
-while(!feof(stream))
-if (fgets(buffer, max_buffer, stream) != NULL) data.append(buffer);
-
-//after the file is read close the file
-pclose(stream);
-}
-// return the read string *note -UNPROCESSED still must be converted
-return data;
+int Accel::getRange(){
+    this->readData();
+    char temp = dataBuffer[RANGE];
+    temp = temp & 0b00011111;
+    temp = temp>>1;
+    this->range = (int) temp;
+    return this->range;
 }
 
-
-
-
-/*get - compiles reading commands
-Inputs
-reg1 - the address of the device on the i2c but
-reg 2 - address of the desired information
-Outputs
-string - string of the command to be executed
-*/
-
-
-string Accel::get(char* reg1, const char* reg2){
-//processing variables: str - command to be processed	    str2 - result of command
-char str[100];
-string str2 = "";
-
-//chain together the appropriate registers and commands to get the desired string command
-strcpy(str, cmdGet);
-strcat(str, reg1);
-strcat(str, reg2);
-
-// executes command and gets the result
-str2 = exec(str);
-
-//return result
-return str2;
+/**
+ * 0 (-2g to 2g)
+ * 1 (-4g to 4g)
+ * 2 (-8g to 8g)
+ */ 
+void Accel::setRange(int range){
+    this->readData();
+    char current = dataBuffer[RANGE];
+    char temp = range << 1; //move value into bits 3,2,1
+    current = current & 0b11100000; //clear the current bits 3,2,1,0
+    temp = current | temp;
+    if (this->writeByte(RANGE, temp)==0){
+        std::cout << "Failure to update range value" << std::endl;
+    }
+    std::cout << "Wrote the Range Value: " << temp  << " to " << RANGE << std::endl;
 }
 
-
-
-
-
-/*set - compiles setting commands
-Inputs
-reg1 - the address of the device on the i2c but
-reg 2 - address of the information to be changed
-Outputs
-string - string of the command to be executed
-*/
-
-void Accel::set(char* reg1, const char* reg2, int value){
-// processing variables str - string of command to run			 str2 - result of command
-char str[100];
-string str2;
-
-//chains together command and resister adresses to get the command string
-strcpy(str, cmdSet);
-strcat(str, reg1);
-strcat(str, reg2);
-strcat(str, to_string(value).c_str());
-
-
-//execute command
-exec(str);
-
-}
-
-
-
-
-
-/*read - runs and sets all the Accel objects accelaration values to the sensor readings. Must be made called for new sensor readings.
-*/
-
-
-void Accel::read(){
-
-
-//for each command read the registers containing the readings and smash togeter the necessary information
-accel_x = (get(deviceADDR, accel_xH)).substr(2, 2) + (get(deviceADDR, accel_xL)).substr(2, 1);
-accel_y = (get(deviceADDR, accel_yH)).substr(2, 2) + (get(deviceADDR, accel_yL)).substr(2, 1);
-accel_z = (get(deviceADDR, accel_zH)).substr(2, 2) + (get(deviceADDR, accel_zL)).substr(2, 1);
-}
-
-/*getX - accessor for the x acceleration component
-Outputs
-string - the signed hex number as a string
-*/
-
-string Accel::getX()
-{
-//return the x reading
-return accel_x;
-}
-
-/*getY - accessor for the y acceleration component
-Outputs
-string - the signed hex number as a string
-*/
-
-
-string Accel::getY()
-{
-//return the y reading
-return accel_y;
-}
-
-/*getZ - accessor for the z acceleration component
-Outputs
-string - the signed hex number as a string
-*/
-
-
-string Accel::getZ()
-{
-//return the z reading
-return accel_z;
-}
-
-int Accel::getRange()
-{
-//return the range value
-return range;
-}
-
-/*stringToGs - nonmember function to convert the strings to signed ints
-Inputs
-str - the signed hex number as a string
-Outputs
-double - the reading of the acceleration in gs
-*/
-double stringToGs (string str, int range)
-{
-	// convert the string of hex to an unsigned int
-  int num = stoi(str, nullptr, 16);
-//convert the in to a double
-  double reading = (double)(num);
-// if the most significant bit is one (>2048) the number is negative so we take the twos complement
- if ( reading >= 2048)
-  {
-    reading = reading - 4096;
-  }
-// this divides by a conversion factor based on the range
-  reading = reading /(2048  / range) ;
-  return reading;
+/**
+ * Returns: 1 if successful, 0 if not
+ */
+int Accel::writeByte(char address, char value){
+    char namebuf[MAX_BUS];
+    snprintf(namebuf, sizeof(namebuf), "/dev/i2c-%d", I2CBus);
+    int file;
+    if ((file = open(namebuf, O_RDWR)) < 0){
+        std::cout << "Failed to open accelerometer  on " << namebuf << " I2C Bus" << std::endl;
+	return 0;
+    }
+    if (ioctl(file, I2C_SLAVE, I2CAddress) < 0){
+        std::cout << "I2C_SLAVE address " << I2CAddress << " failed..." << std::endl;
+	return 0;
+    }
+    char buffer[2];
+    	buffer[0] = address;
+    	buffer[1] = value;
+    if (write(file, buffer, 2) != 2) {
+        std::cout << "Failure to write values to accelerometer." << std::endl;
+	return 0;
+    }
+    close(file);
+    return 1;
 }
