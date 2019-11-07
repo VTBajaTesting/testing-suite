@@ -58,6 +58,7 @@ int main(int argc,char* argv[])
 {
 	int numSamples=0;
 	double totalTime=0;
+	int temp = 1;
 	//std::cout << "Switch:" << monitorSwitch() << std::endl;
 	std::string name="files/TS1atTime";
 	//Note: we should really find a better way to make the line below better
@@ -86,13 +87,16 @@ int main(int argc,char* argv[])
 		}
 		auto end=chrono::steady_clock::now();
 		usleep(15000);
+		if(numSamples > 0){
 		std::cout<<"Read "<<numSamples<<" samples in "<<chrono::duration_cast<chrono::milliseconds>(end - startTest).count()/1000.0<<" seconds"<<std::endl;
-		std::cout<<"Speed: "<<numSamples/(chrono::duration_cast<chrono::milliseconds>(end - startTest).count()/1000.0)<<" Hz"<<std::endl;
+		std::cout<<"Speed: "<<numSamples/(chrono::duration_cast<chrono::milliseconds>(end - startTest).count()/1000.0)<<" Hz"<<std::endl;}
+		temp = numSamples;
 		numSamples=0;
 		totalTime=0;
 		//std::cout<<"New File Starting"<<std::endl;
 		sd.close_File();
-		//while(monitorSwitch()==0){}
+		while(monitorSwitch()==0){
+		}
 	}
 
 	return 0;

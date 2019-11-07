@@ -24,8 +24,8 @@ private:
 	string file_Location = "";
 
 	ofstream myFile;
-	Accel accelerometerR=Accel(2,0x1c);//do this in the constructor unless c++ whines about it
-	Accel accelerometerL=Accel(2,0x1d);//TODO:these are terrible variable names - should be changed to not be bad
+	//Accel accelerometerR=Accel(2,0x1c);//do this in the constructor unless c++ whines about it
+	//Accel accelerometerL=Accel(2,0x1d);//TODO:these are terrible variable names - should be changed to not be bad
 	string my_filename;
 	short    my_updateNum;//useless
 	long   my_systemUpTime;//useless

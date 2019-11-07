@@ -24,8 +24,8 @@ SD_Controller::SD_Controller(string _filename, short _updateNum, long _systemUpT
 	extended_Filename = my_filename + to_string(my_updateNum)+".csv"; //this includes the filename and any revision number
 	//this ensures that we do not overwrite any prior 
 	//logs or tests
-	accelerometerR.setRange(1);
-	accelerometerL.setRange(1);
+	//accelerometerR.setRange(1);
+	//accelerometerL.setRange(1);
 
 	if (myFile.is_open()) //check if file is open for whatever reason beforehand
 	{
@@ -97,8 +97,8 @@ bool SD_Controller::write_Data(int time)
 	
 	stringstream toWrite;
 	imu->readImu();
-	accelerometerL.readData();
-	accelerometerR.readData();
+	//accelerometerL.readData();
+	//accelerometerR.readData();
 	short potent[4]={fRPotentiometer.getVal(),fLPotentiometer.getVal(),bRPotentiometer.getVal(),bLPotentiometer.getVal()};
 	//store each line in a string stream to be written to the ofstream
 	//I think that this is easier to do than passing in information as 
@@ -106,7 +106,7 @@ bool SD_Controller::write_Data(int time)
 	//making each sensor have the same number of calls.
 	toWrite<<time<<","<<potent[0]<<","<<potent[1]<<","<<potent[2]<<","<<potent[3]<<","<<imu->getGyroX()<<","<<imu->getGyroY()<<","<<imu->getGyroZ()<<",";
 	toWrite<<imu->getAccelX()<<","<<imu->getAccelY()<<","<<imu->getAccelZ()<<","<<imu->getTemp()<<",";
-	toWrite<<accelerometerL.getX()<<","<<accelerometerL.getY()<<","<<accelerometerL.getZ()<<",";
-	toWrite<<accelerometerR.getX()<<","<<accelerometerR.getY()<<","<<accelerometerR.getZ()<<"\n";
+	//toWrite<<accelerometerL.getX()<<","<<accelerometerL.getY()<<","<<accelerometerL.getZ()<<",";
+	//toWrite<<accelerometerR.getX()<<","<<accelerometerR.getY()<<","<<accelerometerR.getZ()<<"\n";
 	myFile<<toWrite.rdbuf();
 }

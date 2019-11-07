@@ -102,7 +102,7 @@ void Accel::setRange(int range){
     if (this->writeByte(RANGE, temp)==0){
         std::cout << "Failure to update range value" << std::endl;
     }
-    std::cout << "Wrote the Range Value: " << temp  << " to " << RANGE << std::endl;
+    //std::cout << "Wrote the Range Value: " << temp  << " to " << RANGE << std::endl;
 }
 
 /**

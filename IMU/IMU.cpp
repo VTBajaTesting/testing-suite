@@ -12,7 +12,21 @@ IMU::IMU( const int address, const int bus){
         	
 	this->address = address;
 	this->bus = bus;
-	
+	char imu_name[64];
+        snprintf(imu_name, sizeof(imu_name), "/dev/i2c-%d", bus);
+        //open the i2c bus
+	if((file = open(imu_name, O_RDWR)) < 0)
+	{
+		std::cout << "Failed to open i2c bus to read from IMU." << std::endl;
+	}	
+
+	//access the IMU
+	if(ioctl(file, I2C_SLAVE, address) < 0)
+	{
+		printf("Failed to access IMU Slave Device");
+	}
+
+
 }
 void IMU::readImu()
 {
@@ -30,15 +44,13 @@ void IMU::readImu()
 	{
 		printf("Failed to access IMU Slave Device");
 	}
-
 	//indicate to the IMU that we want data
 	char buf[1] = { 0x00 };
-	if(write(file, buf, 1) !=1)
+	if(write(file, buf, 1) != 1)
 	{
 		std::cout << "Failed to start data transaction with IMU(HIGH to LOW Transition failed) in IMU::read" << std::endl;
 		std::cout << write(file, buf, 1) << std::endl;
 	}
-
 	int expectedNumBytes = 0x7E;
 
 	int numOfBytesRead = read(file, this->dataBuf, expectedNumBytes);
