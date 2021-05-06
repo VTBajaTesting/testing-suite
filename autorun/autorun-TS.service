@@ -1,0 +1,13 @@
+[Unit]
+Description=Starts testing suite data acquisition on boot
+After=syslog.target
+
+[Service]
+Type=simple
+ExecStart=/home/debian/testing-suite/autorun/autorun-TS.sh
+Restart=on-failure
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
